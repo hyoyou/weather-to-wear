@@ -7,12 +7,12 @@ import Umbrella from './Umbrella';
 class ForecastOverview extends Component {
   render() {
     return (
-      <div className="container">
+      <div className="container py-4">
         <div className="row">
           <div className="col-md">
             <ForecastDetail />
           </div>
-          <div className="col-sm">
+          <div className="col-md">
             <Jacket />
             <Umbrella />
           </div>
