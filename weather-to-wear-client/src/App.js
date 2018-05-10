@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
 
 import SearchBar from './Components/SearchBar';
+import ForecastDetail from './Components/ForecastDetail';
 
 class App extends Component {
   render() {
@@ -14,10 +14,7 @@ class App extends Component {
         </header>
         <p className="App-intro">
           <SearchBar />
-          <h2>Weather Forecast</h2>
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>Jacket Recommended</p>
-          <p>Umbrella Recommended</p>
+          <ForecastDetail />
         </p>
       </div>
     );
