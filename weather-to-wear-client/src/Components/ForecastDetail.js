@@ -1,21 +1,15 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
 
-import Jacket from './Jacket';
-import Umbrella from './Umbrella';
-
-class ForecastDetail extends Component {
+export default class ForecastDetail extends Component {
   render() {
     return (
       <div>
-        <h2>Forecast for [zipcode]</h2>
-        <Jacket />
-        <Umbrella />
+        <h2>Forecast for 07024</h2>
+        <p>&#9728;</p>
+        <p>Sunny</p>
+        <p>Temperature: 70&#8457;</p>
+        <p>% Precipitation: 0%</p>
       </div>
     )
   }
 }
-
-export default ForecastDetail;
-
-// Later extract Jacket and Umbrella to one component and pass in props?
-// Reuse this component for each city saved for user

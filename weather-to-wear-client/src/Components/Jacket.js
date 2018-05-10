@@ -5,7 +5,7 @@ export default class Jacket extends Component {
     return (
       <div>
         <h2>Jacket Recommended?</h2>
-        <h1>YES</h1>
+        <h1>NO</h1>
       </div>
     )
   }

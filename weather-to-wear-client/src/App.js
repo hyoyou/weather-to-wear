@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 
 import SearchBar from './Components/SearchBar';
-import ForecastDetail from './Components/ForecastDetail';
+import ForecastOverview from './Components/ForecastOverview';
 
 class App extends Component {
   render() {
@@ -14,7 +14,7 @@ class App extends Component {
         </header>
         <p className="App-intro">
           <SearchBar />
-          <ForecastDetail />
+          <ForecastOverview />
         </p>
       </div>
     );
