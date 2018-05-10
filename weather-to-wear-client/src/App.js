@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 
+import SearchBar from './Components/SearchBar';
+
 class App extends Component {
   render() {
     return (
@@ -11,7 +13,7 @@ class App extends Component {
           <h3>NavBar</h3>
         </header>
         <p className="App-intro">
-          <h2>Search Bar</h2>
+          <SearchBar />
           <h2>Weather Forecast</h2>
           <img src={logo} className="App-logo" alt="logo" />
           <p>Jacket Recommended</p>
