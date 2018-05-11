@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import './App.css';
 
-import SearchBar from './Components/SearchBar';
-import ForecastOverview from './Components/ForecastOverview';
+import SearchBar from './components/SearchBar';
+import ForecastOverview from './components/ForecastOverview';
 
 class App extends Component {
   render() {
