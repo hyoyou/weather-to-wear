@@ -1,24 +1,6 @@
 import React, { Component } from 'react';
 
-//console.log(process.env)
-const APIURL = `https://api.wunderground.com/api/${process.env.REACT_APP_WUNDERGROUND_API_KEY}/geolookup/q/autoip.json`;
-
 class SearchBar extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      zipCode: ''
-    };
-  }
-
-  componentDidMount() {
-    //console.log(APIURL)
-    fetch(`${APIURL}`)
-      .then(response => response.json())
-      .then(result => console.log(result.location.zip))
-  }
-
   onInputZipCode(zipcode) {
     console.log({zipcode})
   }
