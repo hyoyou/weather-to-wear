@@ -6,6 +6,7 @@ export default class Umbrella extends Component {
       <div>
         <h2>Umbrella Recommended?</h2>
         <h1>NO</h1>
+        <p>{this.props.precipitation}</p>
       </div>
     )
   }

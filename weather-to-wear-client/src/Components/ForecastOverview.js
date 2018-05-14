@@ -5,6 +5,12 @@ import Jacket from './Jacket';
 import Umbrella from './Umbrella';
 
 class ForecastOverview extends Component {
+  constructor(props) {
+    super(props)
+
+    console.log(this.props)
+  }
+
   render() {
     return (
       <div className="container py-4">
@@ -13,8 +19,8 @@ class ForecastOverview extends Component {
             <ForecastDetail zipcode={this.props.zipcode} />
           </div>
           <div className="col-md">
-            <Jacket />
-            <Umbrella />
+            <Jacket temperature={this.props.jacket}/>
+            <Umbrella precipitation={this.props.umbrella}/>
           </div>
         </div>
       </div>

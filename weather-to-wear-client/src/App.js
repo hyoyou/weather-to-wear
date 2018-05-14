@@ -16,8 +16,8 @@ class App extends Component {
       zipCode: '',
       icon: '',
       condition: '',
-      temperature: '',
-      precipitation: ''
+      temperature: '70',
+      precipitation: '0'
     };
 
     //this.fetchWeather({currentZip});
@@ -60,7 +60,7 @@ class App extends Component {
         </header>
         <div className="App-intro">
           <SearchBar />
-          <ForecastOverview zipcode={this.state.zipCode} />
+          <ForecastOverview zipcode={this.state.zipCode} jacket={this.state.temperature} umbrella={this.state.precipitation}/>
         </div>
       </div>
     );
