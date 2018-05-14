@@ -1,12 +1,10 @@
 import React, { Component } from 'react'
 
-import WeatherData from './WeatherData';
-
-export default class ForecastDetail extends Component {
+export default class weatherData extends Component {
   render() {
     return (
       <div>
-        <h2>Forecast for {this.props.zipcode}</h2>
+        <h2>Forecast for {this.state.zipCode}</h2>
         <p>&#9728;</p>
         <p>Sunny</p>
         <p>Temperature: 70&#8457;</p>

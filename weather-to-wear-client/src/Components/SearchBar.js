@@ -1,8 +1,15 @@
 import React, { Component } from 'react';
 
 class SearchBar extends Component {
-  onInputZipCode(zipcode) {
-    console.log({zipcode})
+  constructor(props) {
+    super(props);
+
+    this.state = { zipCode: '' }
+  }
+
+  onInputZipCode(zipCode) {
+    this.setState({zipCode});
+    this.props.onSearch(zipCode);
   }
 
   render() {
@@ -14,6 +21,7 @@ class SearchBar extends Component {
             <input
               type="text"
               className="form-control"
+              value={this.state.zipCode}
               placeholder="Zip Code"
               onChange={event => this.onInputZipCode(event.target.value)} />
           </div>

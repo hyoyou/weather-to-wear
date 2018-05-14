@@ -10,7 +10,7 @@ class ForecastOverview extends Component {
       <div className="container py-4">
         <div className="row">
           <div className="col-md">
-            <ForecastDetail />
+            <ForecastDetail zipcode={this.props.zipcode} />
           </div>
           <div className="col-md">
             <Jacket />
