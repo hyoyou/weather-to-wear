@@ -33,6 +33,16 @@ class App extends Component {
       this.setState({
         zipCode: zip
       })
+      //console.log(zip)
+
+      fetch(`https://api.wunderground.com/api/${process.env.REACT_APP_WUNDERGROUND_API_KEY}/q/${zip}.json`)
+      .then(response => response.json())
+      .then(result => {
+        console.log(result)
+      })
+      .catch((error) => {
+        console.error(error);
+      });
       //console.log("state:", this.state.zipCode)
     })
   }
