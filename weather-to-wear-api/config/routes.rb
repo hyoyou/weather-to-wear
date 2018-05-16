@@ -3,9 +3,9 @@ Rails.application.routes.draw do
     resources :users, only: [:edit, :update, :show]
 
     get '/signup' => 'users#new'
-    post '/signup' => 'users#create'
+    post '/signup' => 'users#signup'
     get '/login' => 'sessions#new'
-    post '/login' => 'sessions#create'
+    post '/login' => 'sessions#login'
     get '/logout' => 'sessions#destroy'
   end
 end

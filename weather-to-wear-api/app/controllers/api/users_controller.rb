@@ -9,7 +9,7 @@ class Api::UsersController < ApplicationController
   def new
   end
 
-  def create
+  def signup
     user = User.new(user_params)
     if user.save
       render json: user
@@ -42,11 +42,12 @@ class Api::UsersController < ApplicationController
   end
 
   private
-  def user_params
-    params.require(:user).permit(:name, :email, :password, :cold_sensitivity, :opts_hands_free)
-  end
+    def user_params
+      params.require(:user).permit(:name, :email, :password, :cold_sensitivity, :opts_hands_free)
+    end
 
-  def set_user
-    @user = User.find_by(id: params[:id])
-  end
+    def set_user
+      @user = User.find_by(id: params[:id])
+    end
+
 end
