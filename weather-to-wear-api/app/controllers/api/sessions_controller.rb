@@ -8,7 +8,7 @@ class Api::SessionsController < ApplicationController
     if user && user.authenticate(params[:password])
       render json: { token: Auth.create_token({ id: user.id, name: user.name, email: user.email }) }
     else
-      render json: { errors: { message: "Unable to find a user with those credentials" } }, status: 400
+      render json: { errors: { message: "Unable to find a user with those credentials" } }, status: 401
     end
   end
 

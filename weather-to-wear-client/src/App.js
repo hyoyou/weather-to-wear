@@ -3,6 +3,7 @@ import './App.css';
 
 import SearchBar from './components/SearchBar';
 import ForecastOverview from './components/ForecastOverview';
+import Login from './components/Login';
 
 // const APIURL = `https://api.wunderground.com/api/${process.env.REACT_APP_WUNDERGROUND_API_KEY}/q/`;
 // console.log(process.env)
@@ -35,7 +36,7 @@ class App extends Component {
       })
       //console.log(zip)
 
-      fetch(`https://api.wunderground.com/api/${process.env.REACT_APP_WUNDERGROUND_API_KEY}/q/${zip}.json`)
+      fetch(`http://api.wunderground.com/api/${process.env.REACT_APP_WUNDERGROUND_API_KEY}/q/${zip}.json`)
       .then(response => response.json())
       .then(result => {
         console.log(result)
@@ -67,6 +68,7 @@ class App extends Component {
         <header className="App-header">
           <h1 className="App-title">Weather to Wear</h1>
           <h3>NavBar</h3>
+          <Login />
         </header>
         <div className="App-intro">
           <SearchBar />

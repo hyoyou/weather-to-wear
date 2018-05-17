@@ -14,7 +14,7 @@ class Api::UsersController < ApplicationController
     if user.save
       render json: user
     else
-      render json: { message: user.errors }, status: 400
+      render json: { message: user.errors }, status: 401
     end
   end
 
@@ -29,7 +29,7 @@ class Api::UsersController < ApplicationController
     if @user.update(user_params)
       render json: @user
     else
-      render json: { message: user.errors }, status: 400
+      render json: { message: user.errors }, status: 401
     end
   end
 
@@ -37,7 +37,7 @@ class Api::UsersController < ApplicationController
     if @user.destroy
       render status: 204
     else
-      render json: { message: "Unable to remove user" }, status: 400
+      render json: { message: "Unable to remove user" }, status: 401
     end
   end
 
