@@ -1,29 +1,27 @@
 import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
+import * as sessionActions from '../actions/sessionActions';
 
 class Login extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      credentials: {
-        email: '',
-        password: ''
-      }
+      email: '',
+      password: ''
     }
   }
 
   onInput = (event) => {
-    const field = event.target.name;
-    const credentials = this.state.credentials;
-    credentials[field] = event.target.value;
-    return this.setState({ credentials: credentials })
+    this.setState({
+      [event.target.name]: event.target.value
+    })
   }
 
   onLogin = (event) => {
     event.preventDefault();
-    this.props.actions.loginUser(this.state.credentials);
+    this.props.actions.loginUser(this.state);
   }
 
   render() {
@@ -33,23 +31,26 @@ class Login extends Component {
           <input
             type="text"
             name="email"
-            value={this.state.credentials.email}
-            onChange={this.onInput} />
+            value={this.state.email}
+            onChange={(event) => this.onInput(event)} />
 
           <input
             type="password"
             name="password"
-            value={this.state.credentials.password}
-            onChange={this.onInput} />
+            value={this.state.password}
+            onChange={(event) => this.onInput(event)} />
 
-          <input
-            type="submit"
-            className="btn btn-primary"
-            onClick={this.onLogin} />
+          <button type="submit" className="btn btn-primary" onClick={this.onLogin}>Log In</button>
         </form>
       </div>
     )
   }
 }
 
-export default Login
+function mapDispatchToProps(dispatch) {
+  return {
+    actions: bindActionCreators(sessionActions, dispatch)
+  }
+}
+
+export default connect(null, mapDispatchToProps)(Login);
