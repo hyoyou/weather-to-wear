@@ -1,18 +1,15 @@
 class Api::UsersController < ApplicationController
 
-  before_action :set_user, only: [:show, :edit, :update, :destroy]
+  before_action :set_user, only: [:show, :edit, :update]
 
   def index
     render json: User.all
   end
 
-  def new
-  end
-
   def signup
     user = User.new(user_params)
     if user.save
-      render json: user
+      render json: { token: Auth.create_token(user) }
     else
       render json: { message: user.errors }, status: 401
     end
@@ -30,14 +27,6 @@ class Api::UsersController < ApplicationController
       render json: @user
     else
       render json: { message: user.errors }, status: 401
-    end
-  end
-
-  def destroy
-    if @user.destroy
-      render status: 204
-    else
-      render json: { message: "Unable to remove user" }, status: 401
     end
   end
 
