@@ -1,7 +1,9 @@
 import * as types from '../actions/actionTypes';
-import initialState from './initialState';
 
-export default function sessionReducer(state = initialState, action) {
+export default function sessionReducer(state = {
+  session: !!localStorage.Token,
+  user: {}
+}, action) {
   switch(action.type) {
     case types.LOG_IN_SUCCESS:
       return {

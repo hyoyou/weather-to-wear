@@ -1,7 +1,7 @@
 import * as types from './actionTypes';
 
 export function loginSuccess(user) {
-  console.log("payload", user)
+  // console.log("payload", user)
   return {
     type: types.LOG_IN_SUCCESS,
     payload: user
@@ -16,14 +16,14 @@ export function loginUser(credentials) {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify(credentials)
-    }).then(res => res.json())
-      .then(response => {
-        if (response.errors) {
-          console.log(response.errors)
+    }).then(response => response.json())
+      .then(result => {
+        if (result.errors) {
+          console.log(result.errors)
         } else {
-          console.log(response.token)
-          localStorage.setItem('Token', response.token)
-          dispatch(loginSuccess(response.token))
+          console.log(result.token)
+          localStorage.setItem('Token', result.token)
+          dispatch(loginSuccess(result))
         }
       }).catch(error => console.log(error))
   }
