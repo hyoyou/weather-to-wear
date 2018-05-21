@@ -8,6 +8,10 @@ export default function forecastReducer(state = {
   precipitation: ''
 }, action) {
   switch (action.type) {
+    case types.GET_ZIPCODE:
+      return {
+        zipCode: action.payload
+      }
     case types.FETCH_FORECAST:
       return {
         condition: action.payload.conditions

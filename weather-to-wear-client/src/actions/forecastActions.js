@@ -1,4 +1,5 @@
 import fetch from 'isomorphic-fetch'
+import * as types from '../actions/actionTypes';
 
 const APIURL_GEO = `https://api.wunderground.com/api/${process.env.REACT_APP_WUNDERGROUND_API_KEY}/geolookup/q/autoip.json`;
 const APIURL_FORECAST = `https://api.wunderground.com/api/${process.env.REACT_APP_WUNDERGROUND_API_KEY}/forecast10day/q`;
@@ -8,8 +9,12 @@ export function fetchLocation() {
     return fetch(`${APIURL_GEO}`)
     .then(response => response.json())
     .then(result => {
-      // console.log(result)
+      // console.log(result.location.zip)
       dispatch(fetchForecast(result.location.zip))
+      dispatch({
+        type: types.GET_ZIPCODE,
+        payload: result.location.zip
+      })
     })
   }
 }
@@ -21,7 +26,8 @@ export function fetchForecast(zipcode) {
     // .then(response => console.log(response))
     .then(response => response.json())
     .then(result => {
-      console.log(result.forecast.simpleforecast.forecastday[0])
+      // console.log(result.forecast.simpleforecast.forecastday[0])
+      console.log(result)
     })
   }
 }

@@ -1,7 +1,5 @@
 import React, { Component } from 'react'
 
-import WeatherData from './WeatherData';
-
 export default class ForecastDetail extends Component {
   render() {
     return (

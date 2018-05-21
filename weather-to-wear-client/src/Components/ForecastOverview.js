@@ -4,8 +4,6 @@ import ForecastDetail from './ForecastDetail';
 import Jacket from './Jacket';
 import Umbrella from './Umbrella';
 
-const APIURL = `https://api.wunderground.com/api/${process.env.REACT_APP_WUNDERGROUND_API_KEY}/q`;
-
 class ForecastOverview extends Component {
   constructor(props) {
     super(props)
@@ -16,22 +14,6 @@ class ForecastOverview extends Component {
       dataLoaded: false
     }
   }
-
-  // componentDidMount() {
-  //   fetch(`${APIURL}/07024.json`, {mode: 'cors'})
-  //   .then(response => response.json())
-  //   .then(results => {
-  //     this.setState({
-  //       weatherData: results,
-  //       dataLoaded: true
-  //     })
-  //     console.log(this.state)
-  //   })
-  // }
-
-  // fetchWeather = () => {
-  //
-  // }
 
   render() {
     return (

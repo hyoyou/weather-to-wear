@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import './App.css';
 
@@ -11,7 +12,6 @@ import Login from './components/Login';
 import Logout from './components/Logout';
 
 class App extends Component {
-
   componentDidMount() {
     this.props.fetchLocation();
   }
@@ -28,7 +28,7 @@ class App extends Component {
           </header>
           <div className="App-intro">
             <SearchBar />
-            <ForecastOverview />
+            <ForecastOverview zipcode={this.props.forecast.zipCode}/>
           </div>
         </div>
       </Router>
@@ -36,4 +36,16 @@ class App extends Component {
   }
 }
 
-export default connect((state) => state, { fetchLocation })(App);
+const mapStateToProps = (state) => {
+  return {
+    forecast: state.forecast
+  }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return bindActionCreators({
+    fetchLocation
+  }, dispatch)
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);
