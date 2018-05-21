@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 import './App.css';
 
 import SearchBar from './components/SearchBar';
 import ForecastOverview from './components/ForecastOverview';
 import Login from './components/Login';
+import Logout from './components/Logout';
 
 // const APIURL = `https://api.wunderground.com/api/${process.env.REACT_APP_WUNDERGROUND_API_KEY}/q/`;
 // console.log(process.env)
@@ -64,17 +66,20 @@ class App extends Component {
 
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <h1 className="App-title">Weather to Wear</h1>
-          <h3>NavBar</h3>
-          <Login />
-        </header>
-        <div className="App-intro">
-          <SearchBar />
-          <ForecastOverview zipcode={this.state.zipCode} jacket={this.state.temperature} umbrella={this.state.precipitation}/>
+      <Router>
+        <div className="App">
+          <header className="App-header">
+            <h1 className="App-title">Weather to Wear</h1>
+            <h3>NavBar</h3>
+            <Logout />
+            <Route exact path="/login" component={Login} />
+          </header>
+          <div className="App-intro">
+            <SearchBar />
+            <ForecastOverview zipcode={this.state.zipCode} jacket={this.state.temperature} umbrella={this.state.precipitation}/>
+          </div>
         </div>
-      </div>
+      </Router>
     );
   }
 }
