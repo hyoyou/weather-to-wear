@@ -1,4 +1,4 @@
 export default {
-  session: !!localStorage.token,
+  session: !!localStorage.Token,
   user: {}
 }

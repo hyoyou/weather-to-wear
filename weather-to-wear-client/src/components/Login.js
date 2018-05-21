@@ -22,6 +22,7 @@ class Login extends Component {
   onLogin = (event) => {
     event.preventDefault();
     this.props.actions.loginUser(this.state);
+    this.props.history.push('/')
   }
 
   render() {
