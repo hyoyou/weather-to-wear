@@ -1,8 +1,10 @@
 import { combineReducers } from 'redux';
 import session from './sessionReducer';
+import forecast from './forecastReducer';
 
 const rootReducer = combineReducers({
-  session
+  session,
+  forecast
 });
 
 export default rootReducer;
