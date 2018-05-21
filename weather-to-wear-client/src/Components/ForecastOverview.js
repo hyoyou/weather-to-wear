@@ -5,22 +5,12 @@ import Jacket from './Jacket';
 import Umbrella from './Umbrella';
 
 class ForecastOverview extends Component {
-  constructor(props) {
-    super(props)
-
-    //console.log(this.props)
-    this.state = {
-      weatherData: [],
-      dataLoaded: false
-    }
-  }
-
   render() {
     return (
       <div className="container py-4">
         <div className="row">
           <div className="col-md">
-            <ForecastDetail zipcode={this.props.zipcode} weather={this.state.weatherData} data={this.state.dataLoaded} />
+            <ForecastDetail zipcode={this.props.zipcode} forecast={this.props.forecast} />
           </div>
           <div className="col-md">
             <Jacket temperature={this.props.jacket}/>

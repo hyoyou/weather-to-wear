@@ -28,7 +28,7 @@ class App extends Component {
           </header>
           <div className="App-intro">
             <SearchBar />
-            <ForecastOverview zipcode={this.props.forecast.zipCode}/>
+            <ForecastOverview zipcode={this.props.geolocation.zipCode} forecast={this.props.forecast} />
           </div>
         </div>
       </Router>
@@ -38,6 +38,7 @@ class App extends Component {
 
 const mapStateToProps = (state) => {
   return {
+    geolocation: state.geolocation,
     forecast: state.forecast
   }
 }
