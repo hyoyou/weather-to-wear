@@ -18,8 +18,13 @@ export function loginUser(credentials) {
     }).then(res => res.json())
       .then(response => {
         console.log(response)
-        localStorage.setItem('Token', response.token)
-        dispatch(loginSuccess(response))
+
+        if (response.errors) {
+          console.log(response.errors)
+        } else {
+          localStorage.setItem('Token', response.token)
+          dispatch(loginSuccess(response))
+        }
       }).catch(error => console.log(error))
   }
 }
