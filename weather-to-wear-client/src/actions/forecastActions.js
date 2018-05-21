@@ -26,7 +26,7 @@ export function fetchForecast(zipcode) {
     // .then(response => console.log(response))
     .then(response => response.json())
     .then(result => {
-      console.log(result.forecast.simpleforecast.forecastday[0])
+      // console.log(result.forecast.simpleforecast.forecastday[0])
       dispatch({
         type: types.FETCH_FORECAST,
         payload: result.forecast.simpleforecast.forecastday[0]

@@ -13,8 +13,8 @@ class ForecastOverview extends Component {
             <ForecastDetail zipcode={this.props.zipcode} forecast={this.props.forecast} />
           </div>
           <div className="col-md">
-            <Jacket temperature={this.props.jacket}/>
-            <Umbrella precipitation={this.props.umbrella}/>
+            <Jacket temperature={this.props.forecast.low_temperature.fahrenheit} />
+            <Umbrella precipitation={this.props.forecast.precipitation} />
           </div>
         </div>
       </div>
