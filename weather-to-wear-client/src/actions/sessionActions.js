@@ -1,7 +1,7 @@
 import * as types from './actionTypes';
 
 export function loginSuccess(user) {
-  // console.log("payload", user)
+  console.log("payload", user)
   return {
     type: types.LOG_IN_SUCCESS,
     payload: user
@@ -9,6 +9,7 @@ export function loginSuccess(user) {
 }
 
 export function loginUser(credentials) {
+  console.log("credentials", credentials)
   return dispatch => {
     return fetch('http://localhost:3001/api/login', {
       method: 'POST',
