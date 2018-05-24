@@ -9,6 +9,7 @@ import { fetchLocation } from './actions/forecastActions';
 
 import SearchBar from './components/SearchBar';
 import ForecastOverview from './components/ForecastOverview';
+import MyForecast from './components/MyForecast';
 import Login from './components/Login';
 import Logout from './components/Logout';
 import Settings from './components/Settings';
@@ -40,6 +41,8 @@ class App extends Component {
             <SearchBar />
           </header>
           <div className="App-intro">
+              { isLoggedIn && <MyForecast forecast={this.props.forecast} /> }
+              <h1>Current Location</h1>
               <ForecastOverview zipcode={this.props.geolocation.zipCode} forecast={this.props.forecast} />
             <Switch>
               <PrivateRoute exact path="/settings" component={Settings} />
