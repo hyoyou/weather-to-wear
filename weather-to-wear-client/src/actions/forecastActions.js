@@ -34,16 +34,3 @@ export function fetchForecast(zipcode) {
     })
   }
 }
-
-export function fetchExtended(zipcode) {
-  return function(dispatch) {
-    return fetch(`${APIURL_FORECAST}/${zipcode}.json`)
-    .then(response => response.json())
-    .then(result => {
-      dispatch({
-        type: types.FETCH_EXTENDED,
-        payload: result.forecast.simpleforecast.forecastday
-      })
-    })
-  }
-}
