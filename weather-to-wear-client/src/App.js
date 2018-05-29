@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { BrowserRouter as Router, Route, Switch, NavLink } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
 import './App.css';
 
 import { fetchLocation } from './actions/forecastActions';
@@ -13,6 +13,8 @@ import Signup from './components/Signup';
 import Logout from './components/Logout';
 import Settings from './components/Settings';
 import ForecastOverview from './components/ForecastOverview';
+
+const isLoggedIn = localStorage.getItem('Token') ? true : false;
 
 class App extends Component {
   componentDidMount() {
@@ -26,11 +28,16 @@ class App extends Component {
           <div>
             <Route path='/' component={Home} />
             <Switch>
+              { isLoggedIn ?
+                <PrivateRoute path='/forecast' render={(props) => <ForecastOverview zipcode={this.props.cities.zipCode} forecast={this.props.forecast} />} />
+                :
+                <Route path='/forecast' render={(props) => <ForecastOverview zipcode={this.props.geolocation.zipCode} forecast={this.props.forecast} />} />
+              }
+              <Redirect from='/' to='/forecast' />
               <Route exact path='/login' component={Login} />
               <Route exact path='/signup' component={Signup} />
               <Route exact path='/logout' component={Logout} />
               <PrivateRoute exact path='/settings' component={Settings} />
-              <PrivateRoute path='/forecast' render={(props) => <ForecastOverview zipcode={this.props.cities.zipCode} forecast={this.props.forecast} />} />
             </Switch>
           </div>
         </Router>
@@ -41,6 +48,7 @@ class App extends Component {
 
 const mapStateToProps = (state) => {
   return {
+    geolocation: state.geolocation,
     forecast: state.forecast
   }
 }
