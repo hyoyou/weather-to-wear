@@ -2,62 +2,45 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { BrowserRouter as Router, Route, Switch, NavLink } from 'react-router-dom';
-import { PrivateRoute } from './components/PrivateRoute';
 import './App.css';
 
 import { fetchLocation } from './actions/forecastActions';
+import { PrivateRoute } from './components/PrivateRoute';
 
-import SearchBar from './components/SearchBar';
-import ForecastOverview from './components/ForecastOverview';
-import MyForecast from './components/MyForecast';
+import Home from './components/Home';
 import Login from './components/Login';
 import Signup from './components/Signup';
 import Logout from './components/Logout';
 import Settings from './components/Settings';
-
-const isLoggedIn = localStorage.getItem('Token') ? true : false;
+import ForecastOverview from './components/ForecastOverview';
 
 class App extends Component {
   componentDidMount() {
     this.props.fetchLocation();
-    console.log(isLoggedIn)
   }
 
   render() {
     return (
-      <Router>
-        <div className="App">
-          <header className="App-header">
-            <h1 className="App-title">Weather to Wear</h1>
-            <ul>
-            { isLoggedIn
-              ?
-              <li><NavLink to="/logout">Log Out</NavLink></li>
-              :
-              <li><NavLink to="/login">Log In</NavLink></li>
-            }
-            </ul>
-            <Route path="/login" component={Login} />
-            <Route path="/logout" component={Logout} />
-            <SearchBar />
-          </header>
-          <div className="App-intro">
-              { isLoggedIn && <MyForecast forecast={this.props.forecast} /> }
-              <h1>Current Location</h1>
-              <ForecastOverview zipcode={this.props.geolocation.zipCode} forecast={this.props.forecast} />
+      <div className="App">
+        <Router>
+          <div>
+            <Route path='/' component={Home} />
             <Switch>
-              <PrivateRoute exact path="/settings" component={Settings} />
+              <Route exact path='/login' component={Login} />
+              <Route exact path='/signup' component={Signup} />
+              <Route exact path='/logout' component={Logout} />
+              <PrivateRoute exact path='/settings' component={Settings} />
+              <PrivateRoute path='/forecast' render={(props) => <ForecastOverview zipcode={this.props.cities.zipCode} forecast={this.props.forecast} />} />
             </Switch>
           </div>
-        </div>
-      </Router>
+        </Router>
+      </div>
     );
   }
 }
 
 const mapStateToProps = (state) => {
   return {
-    geolocation: state.geolocation,
     forecast: state.forecast
   }
 }
