@@ -29,11 +29,10 @@ class App extends Component {
             <Route path='/' component={Home} />
             <Switch>
               { isLoggedIn ?
-                <PrivateRoute path='/forecast' render={(props) => <ForecastOverview zipcode={this.props.cities.zipCode} forecast={this.props.forecast} />} />
+                <PrivateRoute path='/forecast' render={(props) => this.props.cities.map((city) => <ForecastOverview zipcode={this.props.city.zipCode} forecast={this.props.forecast} />)} />
                 :
                 <Route path='/forecast' render={(props) => <ForecastOverview zipcode={this.props.geolocation.zipCode} forecast={this.props.forecast} />} />
               }
-              <Redirect from='/' to='/forecast' />
               <Route exact path='/login' component={Login} />
               <Route exact path='/signup' component={Signup} />
               <Route exact path='/logout' component={Logout} />
