@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 
 import ForecastDetail from './ForecastDetail';
+import ExtendedForecast from './ExtendedForecast';
 import Jacket from './Jacket';
 import Umbrella from './Umbrella';
 
@@ -11,6 +12,7 @@ class ForecastOverview extends Component {
         <div className="row">
           <div className="col-md">
             <ForecastDetail zipcode={this.props.zipcode} forecast={this.props.forecast} />
+            <ExtendedForecast zipcode={this.props.zipcode} />
           </div>
           <div className="col-md">
             <Jacket temperature={this.props.forecast.low_temperature.fahrenheit} />

@@ -11,6 +11,7 @@ import SearchBar from './components/SearchBar';
 import ForecastOverview from './components/ForecastOverview';
 import MyForecast from './components/MyForecast';
 import Login from './components/Login';
+import Signup from './components/Signup';
 import Logout from './components/Logout';
 import Settings from './components/Settings';
 
@@ -53,8 +54,6 @@ class App extends Component {
     );
   }
 }
-
-//Render forecast with geolocatio zipcode if user not signed in. else, render forecast based on user's cities
 
 const mapStateToProps = (state) => {
   return {
