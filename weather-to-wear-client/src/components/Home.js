@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 
 import NavBar from './NavBar';
 import NavBarUser from './NavBarUser';
+
 const isLoggedIn = localStorage.getItem('Token') ? true : false;
 
 class Home extends Component {
@@ -16,7 +17,6 @@ class Home extends Component {
       </div>
     );
   }
-
 }
 
 export default Home;

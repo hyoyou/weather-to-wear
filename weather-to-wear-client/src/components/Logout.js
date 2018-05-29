@@ -1,18 +1,17 @@
 import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
+import { Redirect } from 'react-router-dom';
 import * as sessionActions from '../actions/sessionActions';
 
 class Logout extends Component {
-  onLogout = (event) => {
-    event.preventDefault();
+  componentDidMount() {
     this.props.actions.logout();
+    this.props.history.push('/login')
   }
 
   render() {
-    return(
-      <button className="btn btn-primary" onClick={(event) => this.onLogout(event)}>Logout</button>
-    )
+    return null
   }
 }
 
