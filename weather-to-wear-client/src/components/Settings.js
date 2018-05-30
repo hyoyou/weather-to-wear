@@ -5,10 +5,30 @@ class Settings extends Component {
     super(props);
 
     this.state = {
-      cities: [
-        { zipcode: '' }
-      ]
+      zipcode: '',
+      cities: [{ zipcode: '' }]
     }
+  }
+
+  handleZipCodeInput = (id, event) => {
+    const newCities = this.state.cities.map((city, cid) => {
+      if (id !== cid) return city;
+      return { ...city, zipcode: event.target.value };
+    })
+
+    this.setState({ cities: newCities })
+  }
+
+  handleAddCity = event => {
+    this.setState({
+      cities: this.state.cities.concat([{ zipcode: '' }])
+    })
+  }
+
+  handleRemoveCity = (id) => {
+    this.setState({
+      cities: this.state.cities.filter((city, cid) => id !== cid)
+    })
   }
 
   onSave = event => {
@@ -26,15 +46,21 @@ class Settings extends Component {
         <form>
           <fieldset>
             <legend>Cities</legend>
-
-            <label>Add City: </label>
-            <input
-              type="text"
-              name="zipcode"
-
-              onChange={(event) => this.onInput(event)} />
-
+            {this.state.cities.map((city, id) => (
+              <div className="city" key={id}>
+                <input
+                  type="text"
+                  name="zipcode"
+                  placeholder={`City #${id + 1} Zip Code`}
+                  value={city.zipcode}
+                  onChange={(event) => this.handleZipCodeInput(city.id, event)}
+                />
+                <button type="button" onClick={(event) => this.handleRemoveCity(id)}>Remove City</button>
+              </div>
+            ))}
+            <button type="button" onClick={this.handleAddCity}>Add City</button>
           </fieldset>
+
           <fieldset>
             <legend>Preferences</legend>
             <input
@@ -42,14 +68,14 @@ class Settings extends Component {
               name="jacket"
 
               onChange={(event) => this.onInput(event)} />
-            <label for="jacket">I cannot stand the cold!</label>
+            <label htmlFor="jacket">I cannot stand the cold!</label>
             <br />
             <input
               type="checkbox"
               name="umbrella"
 
               onChange={(event) => this.onInput(event)} />
-            <label for="umbrella">I do not like to carry things!</label>
+            <label htmlFor="umbrella">I do not like to carry things!</label>
 
           </fieldset>
           <button type="submit" className="btn btn-primary" onClick={this.onSave}>Save</button>
