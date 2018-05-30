@@ -13,16 +13,21 @@ class Login extends Component {
     }
   }
 
-  onInput = (event) => {
+  onInput = event => {
     this.setState({
       [event.target.name]: event.target.value
     })
   }
 
-  onLogin = (event) => {
+  onLogin = async event => {
     event.preventDefault();
-    this.props.actions.loginUser(this.state);
-    this.props.history.push('/forecast')
+
+    try {
+      await this.props.actions.loginUser(this.state);
+      this.props.history.push('/forecast')
+    } catch (error) {
+      console.log(error.message)
+    }
   }
 
   render() {
@@ -32,12 +37,14 @@ class Login extends Component {
           <input
             type="text"
             name="email"
+            placeholder="Email Address"
             value={this.state.email}
             onChange={(event) => this.onInput(event)} />
 
           <input
             type="password"
             name="password"
+            placeholder="Password"
             value={this.state.password}
             onChange={(event) => this.onInput(event)} />
 
