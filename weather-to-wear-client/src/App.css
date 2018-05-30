@@ -26,3 +26,10 @@
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
+
+fieldset {
+  display: block;
+  margin: 50px;
+  padding: 20px;
+  border: 1px solid #222;
+}
