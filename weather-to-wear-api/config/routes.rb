@@ -2,10 +2,11 @@ Rails.application.routes.draw do
   namespace :api do
     resources :users, only: [:index, :edit, :update, :show]
 
-    # get '/signup' => 'users#new'
-    post '/signup' => 'users#signup'
-    # get '/login' => 'sessions#new'
+    post '/signup' => 'users#create'
+    post '/settings' => 'users#update'
     post '/login' => 'sessions#login'
     get '/logout' => 'sessions#destroy'
+
+    resources :cities, only: [:index, :create, :edit, :show, :update, :destroy]
   end
 end

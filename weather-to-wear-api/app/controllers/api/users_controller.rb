@@ -1,12 +1,11 @@
 class Api::UsersController < ApplicationController
-
   before_action :set_user, only: [:show, :edit, :update]
 
   def index
     render json: User.all
   end
 
-  def signup
+  def create
     user = User.new(user_params)
     if user.save
       render json: { token: Auth.create_token(user) }
@@ -20,6 +19,7 @@ class Api::UsersController < ApplicationController
   end
 
   def edit
+    @user.user_cities.build.build_city
   end
 
   def update
@@ -32,7 +32,8 @@ class Api::UsersController < ApplicationController
 
   private
     def user_params
-      params.require(:user).permit(:name, :email, :password, :cold_sensitivity, :opts_hands_free, city_ids: [])
+      params.require(:user).permit(:name, :email, :password, :cold_sensitivity, :opts_hands_free, city_ids: [],
+                                   user_cities_attributes: [:id, city_attributes: [:id, :zip_code]])
     end
 
     def set_user
