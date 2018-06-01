@@ -1,6 +1,7 @@
 import * as types from './actionTypes';
 
 export function loginSuccess(user) {
+  // console.log(user);
   return {
     type: types.LOG_IN_SUCCESS,
     payload: user
@@ -29,6 +30,7 @@ export function loginUser(credentials) {
       if (result.errors) {
         console.log(result.errors)
       } else {
+        console.log(result)
         localStorage.setItem('Token', result.token)
         dispatch(loginSuccess(result))
       }
