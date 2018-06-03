@@ -5,6 +5,7 @@ Rails.application.routes.draw do
     post '/signup' => 'users#create'
     post '/settings' => 'users#update'
     post '/login' => 'sessions#login'
+    post '/find' => 'sessions#find'
     get '/logout' => 'sessions#destroy'
 
     resources :cities, only: [:index, :create, :edit, :show, :update, :destroy]
