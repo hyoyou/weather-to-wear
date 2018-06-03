@@ -9,7 +9,7 @@ export function loginSuccess(user) {
 }
 
 export function signupSuccess(user) {
-  console.log("payload", user)
+  // console.log("payload", user)
   return {
     type: types.SIGN_UP_SUCCESS,
     payload: user
@@ -30,7 +30,6 @@ export function loginUser(credentials) {
       if (result.errors) {
         console.log(result.errors)
       } else {
-        console.log(result)
         localStorage.setItem('Token', result.token)
         dispatch(loginSuccess(result))
       }
@@ -40,7 +39,7 @@ export function loginUser(credentials) {
 }
 
 export function signupUser(userInfo) {
-  console.log(userInfo)
+  // console.log(userInfo)
   return dispatch => {
     return fetch('http://localhost:3001/api/signup', {
       method: 'POST',
@@ -54,7 +53,7 @@ export function signupUser(userInfo) {
       if (result.errors) {
         console.log(result.errors)
       } else {
-        console.log(result.token)
+        // console.log(result.token)
         localStorage.setItem('Token', result.token)
         dispatch(signupSuccess(result))
       }

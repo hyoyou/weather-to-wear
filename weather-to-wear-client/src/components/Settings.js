@@ -5,6 +5,7 @@ class Settings extends Component {
     super(props);
 
     this.state = {
+      userInfo: this.props.user,
       zipcode: '',
       cities: [{ zipcode: '' }]
     }
@@ -31,6 +32,10 @@ class Settings extends Component {
     })
   }
 
+  onToggle = event => {
+    console.log(event.target.name)
+  }
+
   onSave = event => {
 
   }
@@ -38,6 +43,7 @@ class Settings extends Component {
   onCancel = event => {
 
   }
+
 
   render() {
     return(
@@ -67,14 +73,14 @@ class Settings extends Component {
               type="checkbox"
               name="jacket"
 
-              onChange={(event) => this.onInput(event)} />
+              onChange={(event) => this.onToggle(event)} />
             <label htmlFor="jacket">I cannot stand the cold!</label>
             <br />
             <input
               type="checkbox"
               name="umbrella"
 
-              onChange={(event) => this.onInput(event)} />
+              onChange={(event) => this.onToggle(event)} />
             <label htmlFor="umbrella">I do not like to carry things!</label>
 
           </fieldset>
