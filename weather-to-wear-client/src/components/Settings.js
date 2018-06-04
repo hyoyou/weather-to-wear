@@ -12,9 +12,7 @@ class Settings extends Component {
         userCities: [],
         coldSensitivity: '',
         optsHandsFree: ''
-      },
-      zipcode: '',
-      cities: [{ zipcode: '' }]
+      }
     }
   }
 
@@ -34,23 +32,32 @@ class Settings extends Component {
   }
 
   handleZipCodeInput = (id, event) => {
-    const newCities = this.state.cities.map((city, cid) => {
-      if (id !== cid) return city;
-      return { ...city, zipcode: event.target.value };
+    const updatedCities = this.state.user.cities.map((city, cityId) => {
+      if (id !== cityId) return city;
+      console.log(event.target.value)
+      return { ...city, zip_code: event.target.value };
     })
 
-    this.setState({ cities: newCities })
+    this.setState({
+      user: { ...this.state.user,
+        cities: updatedCities
+      }
+    })
   }
 
   handleAddCity = event => {
     this.setState({
-      cities: this.state.cities.concat([{ zipcode: '' }])
+      user: { ...this.state.user,
+        cities: this.state.user.cities.concat([{ zip_code: '' }])
+      }
     })
   }
 
   handleRemoveCity = (id) => {
     this.setState({
-      cities: this.state.cities.filter((city, cid) => id !== cid)
+      user: { ...this.state.user,
+        cities: this.state.user.cities.filter((city, cid) => id !== cid)
+      }
     })
   }
 
@@ -79,18 +86,17 @@ class Settings extends Component {
     return(
       <div>
         <h2>{this.props.user.name}'s Settings</h2>
-        <p>{this.state.id}</p>
         <form>
           <fieldset>
             <legend>Cities</legend>
-            {this.state.cities.map((city, id) => (
+            {this.state.user.cities.map((city, id) => (
               <div className="city" key={id}>
                 <input
                   type="text"
                   name="zipcode"
                   placeholder={`City #${id + 1} Zip Code`}
-                  value={city.zipcode}
-                  onChange={(event) => this.handleZipCodeInput(city.id, event)}
+                  value={city.zip_code}
+                  onChange={(event) => this.handleZipCodeInput(id, event)}
                 />
                 <button type="button" onClick={(event) => this.handleRemoveCity(id)}>Remove City</button>
               </div>
