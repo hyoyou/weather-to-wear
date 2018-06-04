@@ -55,7 +55,15 @@ class Settings extends Component {
   }
 
   onToggle = event => {
-    console.log(event.target.name)
+    const target = event.target;
+    const value = target.type === 'checkbox' ? target.checked : target.value;
+    const name = target.name;
+
+    this.setState({
+      user: { ...this.state.user,
+        [name] : value
+      }
+    })
   }
 
   onSave = event => {
@@ -94,15 +102,17 @@ class Settings extends Component {
             <legend>Preferences</legend>
             <input
               type="checkbox"
-              name="jacket"
-
+              name="coldSensitivity"
+              value={this.state.user.coldSensitivity}
+              checked={this.state.user.coldSensitivity}
               onChange={(event) => this.onToggle(event)} />
             <label htmlFor="jacket">I cannot stand the cold!</label>
             <br />
             <input
               type="checkbox"
-              name="umbrella"
-              value={this.props.user.optsHandsFree}
+              name="optsHandsFree"
+              value={this.state.user.optsHandsFree}
+              checked={this.state.user.optsHandsFree}
               onChange={(event) => this.onToggle(event)} />
             <label htmlFor="umbrella">I do not like to carry things!</label>
 
