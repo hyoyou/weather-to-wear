@@ -5,11 +5,15 @@ class Settings extends Component {
     super(props);
 
     this.state = {
-      userInfo: this.props.user,
+      id: '',
       zipcode: '',
       cities: [{ zipcode: '' }]
     }
   }
+
+  // componentDidMount() {
+  //   this.setState({ id: this.props.user.id })
+  // }
 
   handleZipCodeInput = (id, event) => {
     const newCities = this.state.cities.map((city, cid) => {
@@ -48,7 +52,7 @@ class Settings extends Component {
   render() {
     return(
       <div>
-        <h2>My Settings</h2>
+        <h2>{this.props.user.name}'s Settings</h2>
         <form>
           <fieldset>
             <legend>Cities</legend>
