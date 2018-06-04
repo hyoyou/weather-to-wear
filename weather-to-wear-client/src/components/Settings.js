@@ -5,15 +5,33 @@ class Settings extends Component {
     super(props);
 
     this.state = {
-      id: '',
+      user: {
+        id: '',
+        name: '',
+        cities: [],
+        userCities: [],
+        coldSensitivity: '',
+        optsHandsFree: ''
+      },
       zipcode: '',
       cities: [{ zipcode: '' }]
     }
   }
 
-  // componentDidMount() {
-  //   this.setState({ id: this.props.user.id })
-  // }
+  componentWillReceiveProps(nextProps) {
+    let user = nextProps.user
+
+    this.setState({
+      user: {
+        id: user.id,
+        name: user.name,
+        cities: user.cities,
+        userCities: user.userCities,
+        coldSensitivity: user.coldSensitivity,
+        optsHandsFree: user.optsHandsFree
+      }
+    })
+  }
 
   handleZipCodeInput = (id, event) => {
     const newCities = this.state.cities.map((city, cid) => {
@@ -53,6 +71,7 @@ class Settings extends Component {
     return(
       <div>
         <h2>{this.props.user.name}'s Settings</h2>
+        <p>{this.state.id}</p>
         <form>
           <fieldset>
             <legend>Cities</legend>
@@ -83,7 +102,7 @@ class Settings extends Component {
             <input
               type="checkbox"
               name="umbrella"
-
+              value={this.props.user.optsHandsFree}
               onChange={(event) => this.onToggle(event)} />
             <label htmlFor="umbrella">I do not like to carry things!</label>
 
