@@ -56,7 +56,7 @@ const mapStateToProps = (state) => {
   return {
     geolocation: state.geolocation,
     forecast: state.forecast,
-    user: state.session
+    user: state.settings.user
   }
 }
 

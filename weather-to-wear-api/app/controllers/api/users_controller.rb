@@ -32,7 +32,7 @@ class Api::UsersController < ApplicationController
 
   private
     def user_params
-      params.require(:user).permit(:name, :email, :password, :cold_sensitivity, :opts_hands_free, city_ids: [],
+      params.require(:user).permit(:id, :name, :email, :password, :cold_sensitivity, :opts_hands_free, city_ids: [],
                                    user_cities_attributes: [:id, city_attributes: [:id, :zip_code]])
     end
 

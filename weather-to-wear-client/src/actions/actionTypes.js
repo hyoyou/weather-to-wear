@@ -5,3 +5,4 @@ export const LOG_IN_SUCCESS = 'LOG_IN_SUCCESS';
 export const LOGOUT = 'LOGOUT';
 export const SET_USER = 'SET_USER';
 export const SIGN_UP_SUCCESS = 'SIGN_UP_SUCCESS';
+export const UPDATE_USER = 'UPDATE_USER';

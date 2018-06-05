@@ -1,4 +1,7 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import * as settingsActions from '../actions/settingsActions';
 
 class Settings extends Component {
   constructor(props) {
@@ -9,7 +12,6 @@ class Settings extends Component {
         id: '',
         name: '',
         cities: [],
-        userCities: [],
         coldSensitivity: '',
         optsHandsFree: ''
       }
@@ -24,7 +26,6 @@ class Settings extends Component {
         id: user.id,
         name: user.name,
         cities: user.cities,
-        userCities: user.userCities,
         coldSensitivity: user.coldSensitivity,
         optsHandsFree: user.optsHandsFree
       }
@@ -74,7 +75,9 @@ class Settings extends Component {
   }
 
   onSave = event => {
+    event.preventDefault();
 
+    this.props.actions.updateUser(this.state.user);
   }
 
   onCancel = event => {
@@ -121,17 +124,23 @@ class Settings extends Component {
               checked={this.state.user.optsHandsFree}
               onChange={(event) => this.onToggle(event)} />
             <label htmlFor="umbrella">I do not like to carry things!</label>
-
+            <br />
+            <button type="submit" className="btn btn-primary" onClick={this.onSave}>Save</button>
+            <button type="submit" className="btn btn-warning" onClick={this.onCancel}>Cancel</button>
           </fieldset>
-          <button type="submit" className="btn btn-primary" onClick={this.onSave}>Save</button>
-          <button type="submit" className="btn btn-warning" onClick={this.onCancel}>Cancel</button>
         </form>
       </div>
     )
   }
 }
 
-export default Settings;
+function mapDispatchToProps(dispatch) {
+  return {
+    actions: bindActionCreators(settingsActions, dispatch)
+  }
+}
+
+export default connect(null, mapDispatchToProps)(Settings);
 
 /*
 My Cities:

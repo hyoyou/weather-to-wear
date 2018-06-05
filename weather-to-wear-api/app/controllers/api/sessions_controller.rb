@@ -6,7 +6,7 @@ class Api::SessionsController < ApplicationController
     # raise params.inspect
     user = User.find_by(email: params[:email])
     if user && user.authenticate(params[:password])
-      token = Auth.create_token({ id: user.id, name: user.name, coldSensitivity: user.cold_sensitivity, optsHandsFree: user.opts_hands_free, userCities: user.user_cities, cities: user.cities })
+      token = Auth.create_token({ id: user.id, name: user.name, coldSensitivity: user.cold_sensitivity, optsHandsFree: user.opts_hands_free, cities: user.cities })
       # current_user = Auth.decode_token(token)
       render json: { user: user, token: token }
     else
