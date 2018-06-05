@@ -54,10 +54,9 @@ class Settings extends Component {
   }
 
   handleAddCity = event => {
-    debugger
     this.setState({
       user: { ...this.state.user,
-        cities: this.state.user.cities.concat([{ zip_code: '' }])
+        cities: this.state.user.cities.concat([{ city: {zip_code: '' }}])
       }
     })
   }
