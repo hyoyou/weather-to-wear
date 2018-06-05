@@ -22,6 +22,9 @@ gem 'bcrypt', '~> 3.1.7'
 # Use JWT for handling authentication with Tokens
 gem 'jwt'
 
+# Use Active Model Serializer to build out json
+gem 'active_model_serializers'
+
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
