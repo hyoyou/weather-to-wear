@@ -16,12 +16,20 @@ export function signupSuccess(user) {
   }
 }
 
-export function findUserSuccess(user) {
+export function loadUserSuccess(user) {
   return {
-    type: types.FIND_USER_SUCCESS,
+    type: types.LOAD_USER_SUCCESS,
     payload: user
   }
 }
+
+export function updateUserSuccess(user) {
+  return {
+    type: types.UPDATE_USER_SUCCESS,
+    payload: user
+  }
+}
+
 
 export function loginUser(credentials) {
   return dispatch => {
@@ -87,7 +95,60 @@ export function findUser(token) {
         console.log(result.errors)
       } else {
         // console.log("Fetch result:", result)
-        dispatch(findUserSuccess(result.user))
+        dispatch(loadUser(result.user.user.id))
+      }
+    })
+    .catch(error => console.log(error))
+  }
+}
+
+export function loadUser(userId) {
+  return dispatch => {
+    return fetch(`http://localhost:3001/api/users/${userId}`, {
+      method: 'GET'
+    })
+    .then(response => response.json())
+    .then(result => {
+      if (result.errors) {
+        console.log(result.errors)
+      } else {
+        console.log("Fetch result:", result)
+        dispatch(loadUserSuccess(result))
+      }
+    })
+    .catch(error => console.log(error))
+  }
+}
+
+export function updateUser(user) {
+  console.log("User:", user)
+  return dispatch => {
+    return fetch(`http://localhost:3001/api/users/${user.id}`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        user: {
+          id: user.id,
+          name: user.name,
+          cold_sensitivity: user.coldSensitivity,
+          opts_hands_free: user.optsHandsFree,
+          user_cities_attributes: [
+            {
+              city_attributes: user.cities
+            }
+          ]
+        }
+      })
+    })
+    .then(response => response.json())
+    .then(result => {
+      if (result.errors) {
+        console.log(result.errors)
+      } else {
+        console.log("Fetch result:", result)
+        dispatch(updateUserSuccess(result))
       }
     })
     .catch(error => console.log(error))

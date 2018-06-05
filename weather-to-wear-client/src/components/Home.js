@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
 
 import NavBar from './NavBar';
 import NavBarUser from './NavBarUser';

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import * as settingsActions from '../actions/settingsActions';
+import * as sessionActions from '../actions/sessionActions';
 
 class Settings extends Component {
   constructor(props) {
@@ -18,22 +18,29 @@ class Settings extends Component {
     }
   }
 
-  componentWillReceiveProps(nextProps) {
-      let user = nextProps.user
-
-      this.setState({
-        user: {
-          id: user.id,
-          name: user.name,
-          cities: user.cities,
-          coldSensitivity: user.coldSensitivity,
-          optsHandsFree: user.optsHandsFree
-        }
-      })
+  componentDidMount() {
+    if (this.state.user.id) {
+      this.props.actions.loadUser(this.state.user.id)
     }
+  }
+
+  componentWillReceiveProps(nextProps) {
+    let user = nextProps.user
+
+    this.setState({
+      user: {
+        id: user.id,
+        name: user.name,
+        cities: user.user_cities,
+        coldSensitivity: user.cold_sensitivity,
+        optsHandsFree: user.opts_hands_free
+      }
+    })
+  }
 
   handleZipCodeInput = (id, event) => {
     const updatedCities = this.state.user.cities.map((city, cityId) => {
+      debugger
       if (id !== cityId) return city;
       console.log(event.target.value)
       return { ...city, zip_code: event.target.value };
@@ -47,6 +54,7 @@ class Settings extends Component {
   }
 
   handleAddCity = event => {
+    debugger
     this.setState({
       user: { ...this.state.user,
         cities: this.state.user.cities.concat([{ zip_code: '' }])
@@ -74,10 +82,15 @@ class Settings extends Component {
     })
   }
 
-  onSave = event => {
+  onSave = async event => {
     event.preventDefault();
 
-    this.props.actions.updateUser(this.state.user);
+    try {
+      await this.props.actions.updateUser(this.state.user);
+      this.props.history.push('/forecast')
+    } catch (error) {
+      console.log(error.message)
+    }
   }
 
   onCancel = event => {
@@ -98,7 +111,7 @@ class Settings extends Component {
                   type="text"
                   name="zipcode"
                   placeholder={`City #${id + 1} Zip Code`}
-                  value={city.zip_code}
+                  value={city.city.zip_code}
                   onChange={(event) => this.handleZipCodeInput(id, event)}
                 />
                 <button type="button" onClick={(event) => this.handleRemoveCity(id)}>Remove City</button>
@@ -136,7 +149,7 @@ class Settings extends Component {
 
 function mapDispatchToProps(dispatch) {
   return {
-    actions: bindActionCreators(settingsActions, dispatch)
+    actions: bindActionCreators(sessionActions, dispatch)
   }
 }
 
