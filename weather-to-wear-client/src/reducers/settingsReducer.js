@@ -2,14 +2,14 @@ import * as types from '../actions/actionTypes';
 
 export default function settingsReducer(state = {
   session: !!localStorage.Token,
-  user: {}
+  userId: ''
 }, action) {
   switch(action.type) {
-    case types.SET_USER:
-      console.log("Reducer action:", action);
+    case types.LOAD_USER_SUCCESS:
       return {
+        ...state,
         session: !!localStorage.Token,
-        user: action.payload.user.user
+        user: action.payload.user,
       }
     default:
       return state;

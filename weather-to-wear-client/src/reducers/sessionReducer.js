@@ -8,11 +8,20 @@ export default function sessionReducer(state = {
   switch(action.type) {
     case types.LOG_IN_SUCCESS:
       return {
+        ...state,
         session: !!localStorage.Token,
-        user: action.payload.user
+        user: action.payload.user,
       }
     case types.SIGN_UP_SUCCESS:
       return {
+        ...state,
+        session: !!localStorage.Token,
+        user: action.payload.user
+      }
+    case types.FIND_USER_SUCCESS:
+      console.log("Reducer action:", action);
+      return {
+        ...state,
         session: !!localStorage.Token,
         user: action.payload.user
       }

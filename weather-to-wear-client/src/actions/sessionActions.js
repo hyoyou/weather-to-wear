@@ -16,6 +16,13 @@ export function signupSuccess(user) {
   }
 }
 
+export function findUserSuccess(user) {
+  return {
+    type: types.FIND_USER_SUCCESS,
+    payload: user
+  }
+}
+
 export function loginUser(credentials) {
   return dispatch => {
     return fetch('http://localhost:3001/api/login', {
@@ -56,6 +63,31 @@ export function signupUser(userInfo) {
         // console.log(result.token)
         localStorage.setItem('Token', result.token)
         dispatch(signupSuccess(result))
+      }
+    })
+    .catch(error => console.log(error))
+  }
+}
+
+export function findUser(token) {
+  console.log("Find user:", token)
+  return dispatch => {
+    return fetch('http://localhost:3001/api/find', {
+      method: 'POST',
+      headers: {
+        'Authorization': token,
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ token })
+    })
+    .then(response => response.json())
+    .then(result => {
+      // debugger
+      if (result.errors) {
+        console.log(result.errors)
+      } else {
+        // console.log("Fetch result:", result)
+        dispatch(findUserSuccess(result.user))
       }
     })
     .catch(error => console.log(error))

@@ -1,26 +1,17 @@
 import * as types from './actionTypes';
 
-export function setUser(user) {
-  return {
-    type: types.SET_USER,
-    payload: user
-  }
+export function loadUserSuccess(user) {
+
 }
 
 export function updateUserSuccess(user) {
 
 }
 
-export function findUser(token) {
-  console.log("Find user:", token)
+export function loadUser(userId) {
   return dispatch => {
-    return fetch('http://localhost:3001/api/find', {
-      method: 'POST',
-      headers: {
-        'Authorization': token,
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({ token })
+    return fetch(`http://localhost:3001/api/users/${userId}`, {
+      method: 'GET'
     })
     .then(response => response.json())
     .then(result => {
@@ -28,7 +19,7 @@ export function findUser(token) {
         console.log(result.errors)
       } else {
         console.log("Fetch result:", result)
-        dispatch(setUser(result))
+        // dispatch(setUser(result))
       }
     })
     .catch(error => console.log(error))
@@ -49,8 +40,11 @@ export function updateUser(user) {
           name: user.name,
           cold_sensitivity: user.coldSensitivity,
           opts_hands_free: user.optsHandsFree,
-          city_ids: user.cities,
-
+          user_cities_attributes: [
+            {
+              city_attributes: user.cities
+            }
+          ]
         }
       })
     })

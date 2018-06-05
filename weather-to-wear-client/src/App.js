@@ -5,7 +5,7 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import './App.css';
 
 import { fetchLocation } from './actions/forecastActions';
-import { findUser } from './actions/settingsActions';
+import { findUser } from './actions/sessionActions';
 import { PrivateRoute } from './components/PrivateRoute';
 
 import Home from './components/Home';
@@ -56,7 +56,7 @@ const mapStateToProps = (state) => {
   return {
     geolocation: state.geolocation,
     forecast: state.forecast,
-    user: state.settings.user
+    user: state.session.user
   }
 }
 

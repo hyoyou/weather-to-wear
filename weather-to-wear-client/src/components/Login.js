@@ -55,10 +55,16 @@ class Login extends Component {
   }
 }
 
+function mapStateToProps(state) {
+  return {
+    user: state.session.user
+  }
+}
+
 function mapDispatchToProps(dispatch) {
   return {
     actions: bindActionCreators(sessionActions, dispatch)
   }
 }
 
-export default connect(null, mapDispatchToProps)(Login);
+export default connect(mapStateToProps, mapDispatchToProps)(Login);

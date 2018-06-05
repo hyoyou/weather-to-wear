@@ -19,18 +19,18 @@ class Settings extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    let user = nextProps.user
+      let user = nextProps.user
 
-    this.setState({
-      user: {
-        id: user.id,
-        name: user.name,
-        cities: user.cities,
-        coldSensitivity: user.coldSensitivity,
-        optsHandsFree: user.optsHandsFree
-      }
-    })
-  }
+      this.setState({
+        user: {
+          id: user.id,
+          name: user.name,
+          cities: user.cities,
+          coldSensitivity: user.coldSensitivity,
+          optsHandsFree: user.optsHandsFree
+        }
+      })
+    }
 
   handleZipCodeInput = (id, event) => {
     const updatedCities = this.state.user.cities.map((city, cityId) => {
