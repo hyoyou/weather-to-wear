@@ -40,10 +40,10 @@ class Settings extends Component {
 
   handleZipCodeInput = (id, event) => {
     const updatedCities = this.state.user.cities.map((city, cityId) => {
-      debugger
+      // debugger
       if (id !== cityId) return city;
       console.log(event.target.value)
-      return { ...city, zip_code: event.target.value };
+      return { ...city, city_attributes: {zip_code: event.target.value } };
     })
 
     this.setState({
@@ -56,7 +56,7 @@ class Settings extends Component {
   handleAddCity = event => {
     this.setState({
       user: { ...this.state.user,
-        cities: this.state.user.cities.concat([{ city: {zip_code: '' }}])
+        cities: this.state.user.cities.concat([{ city_attributes: {zip_code: '' }}])
       }
     })
   }
@@ -110,7 +110,7 @@ class Settings extends Component {
                   type="text"
                   name="zipcode"
                   placeholder={`City #${id + 1} Zip Code`}
-                  value={city.city.zip_code}
+                  value={city.city_attributes.zip_code}
                   onChange={(event) => this.handleZipCodeInput(id, event)}
                 />
                 <button type="button" onClick={(event) => this.handleRemoveCity(id)}>Remove City</button>

@@ -121,7 +121,8 @@ export function loadUser(userId) {
 }
 
 export function updateUser(user) {
-  console.log("User:", user)
+  console.log("User data sent to fetch:", user)
+
   return dispatch => {
     return fetch(`http://localhost:3001/api/users/${user.id}`, {
       method: 'PUT',
@@ -134,11 +135,7 @@ export function updateUser(user) {
           name: user.name,
           cold_sensitivity: user.coldSensitivity,
           opts_hands_free: user.optsHandsFree,
-          user_cities_attributes: [
-            {
-              city_attributes: user.cities
-            }
-          ]
+          user_cities_attributes: user.cities
         }
       })
     })
