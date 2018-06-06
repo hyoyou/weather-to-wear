@@ -21,7 +21,7 @@ class ExtendedForecast extends Component {
 
   handleClick = (event) => {
     event.preventDefault();
-    
+
     let zipcode = this.props.zipcode
 
     return fetch(`${APIURL_FORECAST}/${zipcode}.json`)
@@ -46,8 +46,8 @@ class ExtendedForecast extends Component {
             zipcode={this.props.zipcode}
             icon={forecast.icon_url}
             condition={forecast.conditions}
-            high_temperature={forecast.high}
-            low_temperature={forecast.low}
+            high_temperature={forecast.high.fahrenheit}
+            low_temperature={forecast.low.fahrenheit}
             precipitation={forecast.pop} />
         )}
       </div>
