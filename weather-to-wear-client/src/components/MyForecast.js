@@ -6,15 +6,34 @@ export default class MyForecast extends Component {
     super(props)
 
     this.state = {
-      cities: ['07024', '10001']
+      cities: []
     }
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.cities !== this.state.cities) {
+      console.log(nextProps.cities)
+      let zipArray = nextProps.cities.map((cities, i) => (
+        cities.city_attributes.zip_code
+      ))
+
+      this.setState({ cities: zipArray })
+    }
+
+  }
+
+  handleClick = (city, event) => {
+    event.preventDefault();
+
+    console.log(city)
   }
 
   renderForecasts() {
     return this.state.cities.map(city => {
       return (
         <div key={city}>
-          <ForecastOverview zipcode={Number(city)} forecast={this.props.forecast} />
+          <button type="button" onClick={(event) => this.handleClick(city)}>{city}</button>
+          {/* <ForecastOverview zipcode={Number(city)} forecast={this.props.forecast} /> */}
         </div>
       )
     })

@@ -14,6 +14,7 @@ import Signup from './components/Signup';
 import Logout from './components/Logout';
 import Settings from './components/Settings';
 import ForecastOverview from './components/ForecastOverview';
+import MyForecast from './components/MyForecast';
 
 const isLoggedIn = localStorage.getItem('Token') ? true : false;
 
@@ -36,7 +37,7 @@ class App extends Component {
             <Route path='/' component={Home} />
             <Switch>
               { isLoggedIn ?
-                <Route path='/forecast' render={(props) => <ForecastOverview zipcode={this.props.geolocation.zipCode} forecast={this.props.forecast} />} />
+                <Route path='/forecast' render={(props) => <MyForecast cities={this.props.user.user_cities} forecast={this.props.forecast} />} />
                 :
                 <Route path='/forecast' render={(props) => <ForecastOverview zipcode={this.props.geolocation.zipCode} forecast={this.props.forecast} />} />
               }
