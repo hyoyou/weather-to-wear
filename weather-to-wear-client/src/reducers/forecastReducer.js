@@ -1,19 +1,30 @@
 import * as types from '../actions/actionTypes';
 
 export default function forecastReducer(state = {
+  zipcode: '',
   icon: '',
   condition: '',
-  high_temperature: '',
-  low_temperature: '',
+  highTemperature: '',
+  lowTemperature: '',
   precipitation: ''
 }, action) {
+  console.log(action)
   switch (action.type) {
+    case types.GET_ZIPCODE:
+      return {
+        zipcode: action.payload
+      }
+    case types.SET_ZIPCODE:
+      return {
+        zipcode: action.payload
+      }
     case types.FETCH_FORECAST:
       return {
+        ...state,
         icon: action.payload.icon_url,
         condition: action.payload.conditions,
-        high_temperature: action.payload.high,
-        low_temperature: action.payload.low,
+        highTemperature: action.payload.high.fahrenheit,
+        lowTemperature: action.payload.low.fahrenheit,
         precipitation: action.payload.pop
       }
     default:

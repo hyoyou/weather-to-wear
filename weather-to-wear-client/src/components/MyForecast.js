@@ -1,7 +1,12 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import * as forecastActions from '../actions/forecastActions';
+
+import ForecastButtons from './ForecastButtons';
 import ForecastOverview from './ForecastOverview';
 
-export default class MyForecast extends Component {
+class MyForecast extends Component {
   constructor(props) {
     super(props)
 
@@ -24,28 +29,31 @@ export default class MyForecast extends Component {
 
   handleClick = (city, event) => {
     event.preventDefault();
-
-    console.log(city)
-  }
-
-  renderForecasts() {
-    return this.state.cities.map(city => {
-      return (
-        <div key={city}>
-          <button type="button" onClick={(event) => this.handleClick(city)}>{city}</button>
-          {/* <ForecastOverview zipcode={Number(city)} forecast={this.props.forecast} /> */}
-        </div>
-      )
-    })
+    this.props.actions.fetchForecast(city);
+    this.props.actions.setZipCode(city);
   }
 
   render() {
-    console.log()
     return (
       <div>
         <h1>My Forecasts</h1>
-        {this.renderForecasts()}
+        <ForecastButtons cities={this.state.cities} onClick={this.handleClick} />
+        <ForecastOverview zipcode={this.props.forecast.zipcode} forecast={this.props.forecast} />
       </div>
     )
   }
 }
+
+function mapStateToProps(state) {
+  return {
+    forecast: state.forecast
+  }
+}
+
+function mapDispatchToProps(dispatch) {
+  return {
+    actions: bindActionCreators(forecastActions, dispatch)
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(MyForecast);

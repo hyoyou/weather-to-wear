@@ -55,7 +55,6 @@ class App extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    geolocation: state.geolocation,
     forecast: state.forecast,
     user: state.session.user
   }

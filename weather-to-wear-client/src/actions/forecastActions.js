@@ -19,6 +19,14 @@ export function fetchLocation() {
   }
 }
 
+export function setZipCode(zipcode) {
+  // console.log(user);
+  return {
+    type: types.SET_ZIPCODE,
+    payload: zipcode
+  }
+}
+
 export function fetchForecast(zipcode) {
   return function(dispatch) {
     // console.log(zipcode)
@@ -26,6 +34,7 @@ export function fetchForecast(zipcode) {
     // .then(response => console.log(response))
     .then(response => response.json())
     .then(result => {
+      // console.log("Fetch", result)
       // console.log(result.forecast.simpleforecast.forecastday[0])
       dispatch({
         type: types.FETCH_FORECAST,

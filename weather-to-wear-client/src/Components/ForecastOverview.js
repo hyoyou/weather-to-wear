@@ -8,12 +8,14 @@ class ForecastOverview extends Component {
     return (
       <div>
         <ForecastDetail
-          zipcode={this.props.zipcode}
+          // forecast={this.props.forecast}
+          zipcode={this.props.forecast.zipcode}
           icon={this.props.forecast.icon}
           condition={this.props.forecast.condition}
-          high_temperature={this.props.forecast.high_temperature}
-          low_temperature={this.props.forecast.low_temperature}
-          precipitation={this.props.forecast.precipitation} />
+          high_temperature={this.props.forecast.highTemperature}
+          low_temperature={this.props.forecast.lowTemperature}
+          precipitation={this.props.forecast.precipitation}
+        />
         <ExtendedForecast zipcode={this.props.zipcode} />
       </div>
     )
