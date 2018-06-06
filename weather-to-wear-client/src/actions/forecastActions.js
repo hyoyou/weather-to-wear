@@ -9,7 +9,6 @@ export function fetchLocation() {
     return fetch(`${APIURL_GEO}`)
     .then(response => response.json())
     .then(result => {
-      // console.log(result.location.zip)
       dispatch(fetchForecast(result.location.zip))
       dispatch({
         type: types.GET_ZIPCODE,
@@ -20,7 +19,6 @@ export function fetchLocation() {
 }
 
 export function setZipCode(zipcode) {
-  // console.log(user);
   return {
     type: types.SET_ZIPCODE,
     payload: zipcode
@@ -29,13 +27,9 @@ export function setZipCode(zipcode) {
 
 export function fetchForecast(zipcode) {
   return function(dispatch) {
-    // console.log(zipcode)
     return fetch(`${APIURL_FORECAST}/${zipcode}.json`)
-    // .then(response => console.log(response))
     .then(response => response.json())
     .then(result => {
-      // console.log("Fetch", result)
-      // console.log(result.forecast.simpleforecast.forecastday[0])
       dispatch({
         type: types.FETCH_FORECAST,
         payload: result.forecast.simpleforecast.forecastday[0]

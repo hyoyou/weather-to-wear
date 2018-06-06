@@ -42,7 +42,6 @@ class Settings extends Component {
     const updatedCities = this.state.user.cities.map((city, cityId) => {
       // debugger
       if (id !== cityId) return city;
-      console.log(event.target.value)
       return { ...city, city_attributes: {zip_code: event.target.value } };
     })
 
@@ -153,19 +152,3 @@ function mapDispatchToProps(dispatch) {
 }
 
 export default connect(null, mapDispatchToProps)(Settings);
-
-/*
-My Cities:
-Seattle, WA       Delete
-New York, NY      Delete
-
-Add city:
-ZipCode [     ]
-
-checkbox or toggle/ I can't stand the cold!
-value={this.state.coldSensitivity}
-checkbox or toggle/ I don't like to carry much!
-value={this.state.optsHandsFree}
-
-Save    Cancel
-*/

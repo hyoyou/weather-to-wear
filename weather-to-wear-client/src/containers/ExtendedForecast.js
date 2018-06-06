@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import ForecastDetail from './ForecastDetail';
+import ForecastDetail from '../components/ForecastDetail';
 
 const APIURL_FORECAST = `https://api.wunderground.com/api/${process.env.REACT_APP_WUNDERGROUND_API_KEY}/forecast10day/q`;
 
@@ -10,12 +10,6 @@ class ExtendedForecast extends Component {
 
     this.state = {
       forecasts: []
-    }
-  }
-
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.forecasts !== this.state.forecasts) {
-      console.log(nextProps.forecasts)
     }
   }
 

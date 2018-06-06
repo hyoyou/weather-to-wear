@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 import ForecastDetail from './ForecastDetail';
-import ExtendedForecast from './ExtendedForecast';
+import ExtendedForecast from '../containers/ExtendedForecast';
 
 class ForecastOverview extends Component {
   render() {

@@ -1,7 +1,6 @@
 import * as types from './actionTypes';
 
 export function loginSuccess(user) {
-  // console.log(user);
   return {
     type: types.LOG_IN_SUCCESS,
     payload: user
@@ -9,7 +8,6 @@ export function loginSuccess(user) {
 }
 
 export function signupSuccess(user) {
-  // console.log("payload", user)
   return {
     type: types.SIGN_UP_SUCCESS,
     payload: user
@@ -42,19 +40,14 @@ export function loginUser(credentials) {
     })
     .then(response => response.json())
     .then(result => {
-      if (result.errors) {
-        console.log(result.errors)
-      } else {
-        localStorage.setItem('Token', result.token)
-        dispatch(loginSuccess(result))
-      }
+      localStorage.setItem('Token', result.token)
+      dispatch(loginSuccess(result))
     })
     .catch(error => console.log(error))
   }
 }
 
 export function signupUser(userInfo) {
-  // console.log(userInfo)
   return dispatch => {
     return fetch('http://localhost:3001/api/signup', {
       method: 'POST',
@@ -65,20 +58,14 @@ export function signupUser(userInfo) {
     })
     .then(response => response.json())
     .then(result => {
-      if (result.errors) {
-        console.log(result.errors)
-      } else {
-        // console.log(result.token)
-        localStorage.setItem('Token', result.token)
-        dispatch(signupSuccess(result))
-      }
+      localStorage.setItem('Token', result.token)
+      dispatch(signupSuccess(result))
     })
     .catch(error => console.log(error))
   }
 }
 
 export function findUser(token) {
-  console.log("Find user:", token)
   return dispatch => {
     return fetch('http://localhost:3001/api/find', {
       method: 'POST',
@@ -90,13 +77,7 @@ export function findUser(token) {
     })
     .then(response => response.json())
     .then(result => {
-      // debugger
-      if (result.errors) {
-        console.log(result.errors)
-      } else {
-        // console.log("Fetch result:", result)
-        dispatch(loadUser(result.user.user.id))
-      }
+      dispatch(loadUser(result.user.user.id))
     })
     .catch(error => console.log(error))
   }
@@ -109,20 +90,13 @@ export function loadUser(userId) {
     })
     .then(response => response.json())
     .then(result => {
-      if (result.errors) {
-        console.log(result.errors)
-      } else {
-        console.log("Fetch result:", result)
-        dispatch(loadUserSuccess(result))
-      }
+      dispatch(loadUserSuccess(result))
     })
     .catch(error => console.log(error))
   }
 }
 
 export function updateUser(user) {
-  console.log("User data sent to fetch:", user)
-
   return dispatch => {
     return fetch(`http://localhost:3001/api/users/${user.id}`, {
       method: 'PUT',
@@ -141,12 +115,7 @@ export function updateUser(user) {
     })
     .then(response => response.json())
     .then(result => {
-      if (result.errors) {
-        console.log(result.errors)
-      } else {
-        console.log("Fetch result:", result)
-        dispatch(updateUserSuccess(result))
-      }
+      dispatch(updateUserSuccess(result))
     })
     .catch(error => console.log(error))
   }

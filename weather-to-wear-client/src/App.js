@@ -8,13 +8,13 @@ import { fetchLocation } from './actions/forecastActions';
 import { findUser } from './actions/sessionActions';
 import { PrivateRoute } from './components/PrivateRoute';
 
-import Home from './components/Home';
-import Login from './components/Login';
-import Signup from './components/Signup';
-import Logout from './components/Logout';
-import Settings from './components/Settings';
 import ForecastOverview from './components/ForecastOverview';
-import MyForecast from './components/MyForecast';
+import Home from './components/Home';
+import Login from './containers/Login';
+import Logout from './containers/Logout';
+import MyForecast from './containers/MyForecast';
+import Settings from './containers/Settings';
+import Signup from './containers/Signup';
 
 const isLoggedIn = localStorage.getItem('Token') ? true : false;
 
@@ -24,7 +24,6 @@ class App extends Component {
 
     const token = localStorage.getItem('Token')
     if (token) {
-      console.log("App token:", token);
       this.props.findUser(token);
     }
   }

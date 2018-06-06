@@ -4,7 +4,6 @@ export default function sessionReducer(state = {
   session: !!localStorage.Token,
   user: {}
 }, action) {
-  console.log(action);
   switch(action.type) {
     case types.LOG_IN_SUCCESS:
       return {

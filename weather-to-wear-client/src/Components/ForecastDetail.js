@@ -5,7 +5,6 @@ import Umbrella from './Umbrella';
 
 export default class ForecastDetail extends Component {
   render() {
-    console.log(this.props)
     return (
       <div className="container py-4">
         <div className="row">

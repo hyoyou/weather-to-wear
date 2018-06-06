@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 import * as sessionActions from '../actions/sessionActions';
 
 class Logout extends Component {
-
   onLogout = async event => {
     event.preventDefault();
 

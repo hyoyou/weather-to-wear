@@ -8,7 +8,6 @@ export default function forecastReducer(state = {
   lowTemperature: '',
   precipitation: ''
 }, action) {
-  console.log(action)
   switch (action.type) {
     case types.GET_ZIPCODE:
       return {

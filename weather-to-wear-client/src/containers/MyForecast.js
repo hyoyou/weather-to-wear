@@ -3,8 +3,8 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as forecastActions from '../actions/forecastActions';
 
-import ForecastButtons from './ForecastButtons';
-import ForecastOverview from './ForecastOverview';
+import ForecastButtons from '../components/ForecastButtons';
+import ForecastOverview from '../components/ForecastOverview';
 
 class MyForecast extends Component {
   constructor(props) {
@@ -17,7 +17,6 @@ class MyForecast extends Component {
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.cities !== this.state.cities) {
-      console.log(nextProps.cities)
       let zipArray = nextProps.cities.map((cities, i) => (
         cities.city_attributes.zip_code
       ))
