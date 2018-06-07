@@ -20,7 +20,7 @@ class ForecastOverview extends Component {
     event.preventDefault();
     // is this an anti-pattern?
     this.setState({ extForecasts: [] });
-
+    // setTimeout?
     return fetch(`${APIURL_FORECAST}/${this.props.forecast.zipcode}.json`)
     .then(response => response.json())
     .then(result => {

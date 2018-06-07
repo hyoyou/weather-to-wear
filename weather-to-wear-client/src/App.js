@@ -66,5 +66,3 @@ const mapDispatchToProps = (dispatch) => {
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);
-
-//<PrivateRoute path='/forecast' render={(props) => this.props.cities.map((city) => <ForecastOverview zipcode={this.props.city.zipCode} forecast={this.props.forecast} />)} />

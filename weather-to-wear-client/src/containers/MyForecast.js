@@ -6,23 +6,19 @@ import * as forecastActions from '../actions/forecastActions';
 import ForecastButtons from '../components/ForecastButtons';
 import ForecastOverview from './ForecastOverview';
 
-const APIURL_FORECAST = `https://api.wunderground.com/api/${process.env.REACT_APP_WUNDERGROUND_API_KEY}/forecast10day/q`;
-
 class MyForecast extends Component {
   constructor(props) {
     super(props)
 
     this.state = {
       cities: this.props.cities,
-      forecast: this.props.forecast,
       extForecasts: []
     }
   }
 
   componentWillReceiveProps(nextProps) {
     this.setState({
-      cities: nextProps.cities,
-      forecast: nextProps.forecast
+      cities: nextProps.cities
     })
   }
 
@@ -43,7 +39,7 @@ class MyForecast extends Component {
         <div>
           <h1>My Forecasts</h1>
           <ForecastButtons cities={citiesArray} onClick={this.handleClick} />
-          <ForecastOverview forecast={this.state.forecast} forecasts={this.state.extForecasts} />
+          <ForecastOverview forecast={this.props.forecast} forecasts={this.state.extForecasts} />
         </div>
       )
     } else {
