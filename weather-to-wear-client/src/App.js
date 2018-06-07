@@ -8,7 +8,7 @@ import { fetchLocation } from './actions/forecastActions';
 import { findUser } from './actions/sessionActions';
 import { PrivateRoute } from './components/PrivateRoute';
 
-import ForecastOverview from './components/ForecastOverview';
+import ForecastOverview from './containers/ForecastOverview';
 import Home from './components/Home';
 import Login from './containers/Login';
 import Logout from './containers/Logout';

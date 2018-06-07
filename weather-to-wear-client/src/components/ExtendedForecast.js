@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import ForecastDetail from '../components/ForecastDetail';
+import ForecastDetail from './ForecastDetail';
 
 class ExtendedForecast extends Component {
   render() {

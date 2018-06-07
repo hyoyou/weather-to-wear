@@ -4,7 +4,7 @@ import { bindActionCreators } from 'redux';
 import * as forecastActions from '../actions/forecastActions';
 
 import ForecastButtons from '../components/ForecastButtons';
-import ForecastOverview from '../components/ForecastOverview';
+import ForecastOverview from './ForecastOverview';
 
 const APIURL_FORECAST = `https://api.wunderground.com/api/${process.env.REACT_APP_WUNDERGROUND_API_KEY}/forecast10day/q`;
 
