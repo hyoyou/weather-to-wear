@@ -15,29 +15,37 @@ class Settings extends Component {
         cities: [],
         coldSensitivity: '',
         optsHandsFree: ''
-      }
+      },
+      loading: true
     }
   }
 
   componentDidMount() {
-    if (this.state.user.id) {
-      this.props.actions.loadUser(this.state.user.id)
-    }
-  }
-
-  componentWillReceiveProps(nextProps) {
-    let user = nextProps.user
-
     this.setState({
       user: {
-        id: user.id,
-        name: user.name,
-        cities: user.user_cities,
-        coldSensitivity: user.cold_sensitivity,
-        optsHandsFree: user.opts_hands_free
-      }
+        id: this.props.user.id,
+        name: this.props.user.name,
+        cities: this.props.user.user_cities,
+        coldSensitivity: this.props.user.cold_sensitivity,
+        optsHandsFree: this.props.user.opts_hands_free
+      },
+      loading: false
     })
   }
+
+  // componentWillReceiveProps(nextProps) {
+  //   let user = nextProps.user
+  //
+  //   this.setState({
+  //     user: {
+  //       id: user.id,
+  //       name: user.name,
+  //       cities: user.user_cities,
+  //       coldSensitivity: user.cold_sensitivity,
+  //       optsHandsFree: user.opts_hands_free
+  //     }
+  //   })
+  // }
 
   handleZipCodeInput = (id, event) => {
     const updatedCities = this.state.user.cities.map((city, cityId) => {
