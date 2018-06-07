@@ -34,7 +34,7 @@ export default function sessionReducer(state = {
       return {
         ...state,
         session: !!localStorage.Token,
-        user: action.payload.user
+        user: action.payload
       }
     case types.LOGOUT:
       return {

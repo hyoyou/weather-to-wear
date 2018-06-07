@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import { withRouter } from "react-router-dom";
 import * as sessionActions from '../actions/sessionActions';
 
 class Settings extends Component {
@@ -151,4 +152,4 @@ function mapDispatchToProps(dispatch) {
   }
 }
 
-export default connect(null, mapDispatchToProps)(Settings);
+export default withRouter(connect(null, mapDispatchToProps)(Settings));
