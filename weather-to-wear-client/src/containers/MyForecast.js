@@ -10,20 +10,31 @@ class MyForecast extends Component {
   constructor(props) {
     super(props)
 
-    this.state = {
-      cities: []
-    }
+    this.state = { cities: this.props.cities }
   }
 
+  // componentDidMount() {
+  //   // console.log("props", this.props.cities)
+  //   // console.log("state", this.state.cities)
+  //   if (this.props.cities !== this.state.cities) {
+  //     let zipArray = this.props.cities.map((cities, i) => (
+  //       cities.city_attributes.zip_code
+  //     ))
+  //
+  //     this.setState({ cities: zipArray })
+  //   }
+  // }
+
   componentWillReceiveProps(nextProps) {
-    if (nextProps.cities !== this.state.cities) {
+    // console.log("props", this.props.cities)
+    // console.log("props", nextProps.cities)
+    // if (nextProps.cities !== this.state.cities) {
       let zipArray = nextProps.cities.map((cities, i) => (
         cities.city_attributes.zip_code
       ))
 
-      this.setState({ cities: zipArray })
-    }
-
+      this.setState({ cities: nextProps.cities })
+    // }
   }
 
   handleClick = (city, event) => {
@@ -33,13 +44,23 @@ class MyForecast extends Component {
   }
 
   render() {
-    return (
-      <div>
-        <h1>My Forecasts</h1>
-        <ForecastButtons cities={this.state.cities} onClick={this.handleClick} />
-        <ForecastOverview zipcode={this.props.forecast.zipcode} forecast={this.props.forecast} />
-      </div>
-    )
+    if (this.state.cities) {
+      const citiesArray = this.state.cities.map((city, i) => (
+        city.city_attributes.zip_code
+      ))
+
+      return (
+        <div>
+          <h1>My Forecasts</h1>
+          <ForecastButtons cities={citiesArray} onClick={this.handleClick} />
+          <ForecastOverview zipcode={this.props.forecast.zipcode} forecast={this.props.forecast} />
+        </div>
+      )
+    } else {
+      return (
+        <h2>Loading...</h2>
+      )
+    }
   }
 }
 
