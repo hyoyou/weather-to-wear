@@ -19,15 +19,11 @@ class Login extends Component {
     })
   }
 
-  onLogin = async event => {
+  onLogin = event => {
     event.preventDefault();
 
-    try {
-      await this.props.actions.loginUser(this.state);
-      this.props.history.push('/forecast')
-    } catch (error) {
-      console.log(error.message)
-    }
+    this.props.actions.loginUser(this.state);
+    this.props.history.push('/forecast');
   }
 
   render() {
@@ -55,16 +51,10 @@ class Login extends Component {
   }
 }
 
-function mapStateToProps(state) {
-  return {
-    user: state.session.user
-  }
-}
-
 function mapDispatchToProps(dispatch) {
   return {
     actions: bindActionCreators(sessionActions, dispatch)
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Login);
+export default connect(null, mapDispatchToProps)(Login);

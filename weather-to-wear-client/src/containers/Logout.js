@@ -4,19 +4,15 @@ import { connect } from 'react-redux';
 import * as sessionActions from '../actions/sessionActions';
 
 class Logout extends Component {
-  onLogout = async event => {
+  onLogout = event => {
     event.preventDefault();
 
-    try {
-      await this.props.actions.logout();
-      this.props.history.push('/forecast')
-    } catch (error) {
-      console.log(error.message)
-    }
+    this.props.actions.logout();
+    this.props.history.push('/')
   }
 
   render() {
-    return(
+    return (
       <div>
         <h2>Are you sure you want to log out?</h2>
         <button className="btn btn-primary" onClick={(event) => this.onLogout(event)}>Logout</button>
