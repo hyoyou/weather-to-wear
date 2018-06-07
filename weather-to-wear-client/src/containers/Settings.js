@@ -84,16 +84,14 @@ class Settings extends Component {
   onSave = async event => {
     event.preventDefault();
 
-    try {
-      await this.props.actions.updateUser(this.state.user);
-      this.props.history.push('/forecast')
-    } catch (error) {
-      console.log(error.message)
-    }
+    this.props.actions.updateUser(this.state.user);
+    this.props.history.push('/forecast');
   }
 
   onCancel = event => {
+    event.preventDefault();
 
+    this.props.history.push('/forecast');
   }
 
 
@@ -137,9 +135,10 @@ class Settings extends Component {
               onChange={(event) => this.onToggle(event)} />
             <label htmlFor="umbrella">I do not like to carry things!</label>
             <br />
-            <button type="submit" className="btn btn-primary" onClick={this.onSave}>Save</button>
-            <button type="submit" className="btn btn-warning" onClick={this.onCancel}>Cancel</button>
           </fieldset>
+
+          <button type="submit" className="btn btn-primary" style={{ marginRight: '10px' }} onClick={this.onSave}>Save</button>
+          <button type="submit" className="btn btn-warning" style={{ marginLeft: '10px' }} onClick={this.onCancel}>Cancel</button>
         </form>
       </div>
     )
