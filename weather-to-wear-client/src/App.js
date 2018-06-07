@@ -36,9 +36,9 @@ class App extends Component {
             <Route path='/' component={Home} />
             <Switch>
               { isLoggedIn ?
-                <Route path='/forecast' render={(props) => <MyForecast cities={this.props.user.user_cities} forecast={this.props.forecast} />} />
+                <Route path='/forecast' render={(props) => <MyForecast cities={this.props.user.user_cities_attributes} forecast={this.props.forecast} />} />
                 :
-                <Route path='/forecast' render={(props) => <ForecastOverview zipcode={this.props.forecast.zipcode} forecast={this.props.forecast} />} />
+                <Route path='/forecast' render={(props) => <ForecastOverview forecast={this.props.forecast} />} />
               }
               <Route exact path='/login' component={Login} />
               <Route exact path='/signup' component={Signup} />

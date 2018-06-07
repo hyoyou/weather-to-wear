@@ -18,7 +18,6 @@ export default function sessionReducer(state = {
         user: action.payload.user
       }
     case types.FIND_USER_SUCCESS:
-      console.log("Reducer action:", action);
       return {
         ...state,
         session: !!localStorage.Token,

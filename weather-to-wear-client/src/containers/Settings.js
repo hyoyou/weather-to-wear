@@ -10,48 +10,15 @@ class Settings extends Component {
   constructor(props) {
     super(props);
 
-    // this.state = {
-    //   user: {
-    //     id: '',
-    //     name: '',
-    //     cities: [],
-    //     coldSensitivity: '',
-    //     optsHandsFree: ''
-    //   }
     this.state = { user: this.props.user }
-
-    // }
   }
 
-  // componentDidMount() {
-  //   this.setState({
-  //     user: {
-  //       id: this.props.user.id,
-  //       name: this.props.user.name,
-  //       cities: this.props.user.user_cities,
-  //       coldSensitivity: this.props.user.cold_sensitivity,
-  //       optsHandsFree: this.props.user.opts_hands_free
-  //     }
-  //   })
-  // }
-
   componentWillReceiveProps(nextProps) {
-    // let user = nextProps.user
-
-    // this.setState({
-    //   user: {
-    //     id: user.id,
-    //     name: user.name,
-    //     cities: user.user_cities,
-    //     coldSensitivity: user.cold_sensitivity,
-    //     optsHandsFree: user.opts_hands_free
-    //   }
-    // })
     this.setState({ user: nextProps.user })
   }
 
   handleZipCodeInput = (id, event) => {
-    const updatedCities = this.state.user.user_cities.map((city, cityId) => {
+    const updatedCities = this.state.user.user_cities_attributes.map((city, cityId) => {
       // debugger
       if (id !== cityId) return city;
       return { ...city, city_attributes: {zip_code: event.target.value } };
@@ -59,7 +26,7 @@ class Settings extends Component {
 
     this.setState({
       user: { ...this.state.user,
-        user_cities: updatedCities
+        user_cities_attributes: updatedCities
       }
     })
   }
@@ -67,7 +34,7 @@ class Settings extends Component {
   handleAddCity = event => {
     this.setState({
       user: { ...this.state.user,
-        user_cities: this.state.user.user_cities.concat([{ city_attributes: {zip_code: '' }}])
+        user_cities_attributes: this.state.user.user_cities_attributes.concat([{ city_attributes: {zip_code: '' }}])
       }
     })
   }
@@ -75,7 +42,7 @@ class Settings extends Component {
   handleRemoveCity = (id) => {
     this.setState({
       user: { ...this.state.user,
-        user_cities: this.state.user.user_cities.filter((city, cid) => id !== cid)
+        user_cities_attributes: this.state.user.user_cities_attributes.filter((city, cid) => id !== cid)
       }
     })
   }
@@ -114,8 +81,8 @@ class Settings extends Component {
           <form>
             <fieldset>
               <legend>Cities</legend>
-                {this.state.user.user_cities &&
-                this.state.user.user_cities.map((city, id) => (
+                {this.state.user.user_cities_attributes &&
+                this.state.user.user_cities_attributes.map((city, id) => (
                 <div className="city" key={id}>
                   <input
                     type="text"
