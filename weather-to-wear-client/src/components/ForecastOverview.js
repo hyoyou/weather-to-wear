@@ -3,20 +3,53 @@ import React, { Component } from 'react';
 import ForecastDetail from './ForecastDetail';
 import ExtendedForecast from '../containers/ExtendedForecast';
 
+const APIURL_FORECAST = `https://api.wunderground.com/api/${process.env.REACT_APP_WUNDERGROUND_API_KEY}/forecast10day/q`;
+
 class ForecastOverview extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = { extForecasts: this.props.forecasts }
+  }
+
+  componentWillReceiveProps(nextProps) {
+    this.setState({ extForecasts: nextProps.forecasts })
+  }
+
+  handleClick = (event) => {
+    event.preventDefault();
+    // is this an anti-pattern?
+    this.setState({ extForecasts: [] });
+
+    return fetch(`${APIURL_FORECAST}/${this.props.forecast.zipcode}.json`)
+    .then(response => response.json())
+    .then(result => {
+      result.forecast.simpleforecast.forecastday.slice(1, 5).map(weather =>
+        this.setState(prevState => ({
+          extForecasts: [...prevState.extForecasts, weather]
+        }))
+      )
+    })
+}
+
   render() {
+    const { forecast } = this.props;
+
     return (
       <div>
         <ForecastDetail
-          // forecast={this.props.forecast}
-          zipcode={this.props.forecast.zipcode}
-          icon={this.props.forecast.icon}
-          condition={this.props.forecast.condition}
-          high_temperature={this.props.forecast.highTemperature}
-          low_temperature={this.props.forecast.lowTemperature}
-          precipitation={this.props.forecast.precipitation}
+          zipcode={forecast.zipcode}
+          icon={forecast.icon}
+          condition={forecast.condition}
+          high_temperature={forecast.highTemperature}
+          low_temperature={forecast.lowTemperature}
+          precipitation={forecast.precipitation}
         />
-        <ExtendedForecast zipcode={this.props.forecast.zipcode} />
+        <button onClick={(event) => this.handleClick(event)}>Get Extended Forecast</button>
+        <ExtendedForecast
+          zipcode={forecast.zipcode}
+          forecasts={this.state.extForecasts}
+        />
       </div>
     )
   }
