@@ -134,19 +134,21 @@ class Settings extends Component {
               <legend>Preferences</legend>
               <input
                 type="checkbox"
-                name="coldSensitivity"
-                value={this.state.user.coldSensitivity}
-                checked={this.state.user.coldSensitivity}
+                name="cold_sensitivity"
+                value={this.state.user.cold_sensitivity}
+                checked={this.state.user.cold_sensitivity}
                 onChange={(event) => this.onToggle(event)} />
               <label htmlFor="jacket">I cannot stand the cold!</label>
+              <p>If checked, jacket will be recommended below 60&#8457; (Default recommendation is below 55&#8457;)</p>
               <br />
               <input
                 type="checkbox"
-                name="optsHandsFree"
-                value={this.state.user.optsHandsFree}
-                checked={this.state.user.optsHandsFree}
+                name="opts_hands_free"
+                value={this.state.user.opts_hands_free}
+                checked={this.state.user.opts_hands_free}
                 onChange={(event) => this.onToggle(event)} />
               <label htmlFor="umbrella">I do not like to carry things!</label>
+              <p>If checked, umbrella will be recommended above 55% chance of rain (Default recommendation is above 50%)</p>
               <br />
             </fieldset>
 

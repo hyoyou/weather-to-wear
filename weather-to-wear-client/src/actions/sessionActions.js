@@ -104,13 +104,14 @@ export function updateUser(user) {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
-        user: {
-          id: user.id,
-          name: user.name,
-          cold_sensitivity: user.coldSensitivity,
-          opts_hands_free: user.optsHandsFree,
-          user_cities_attributes: user.cities
-        }
+        // user: {
+        //   id: user.id,
+        //   name: user.name,
+        //   cold_sensitivity: user.cold_sensitivity,
+        //   opts_hands_free: user.optsHandsFree,
+        //   user_cities_attributes: user.cities
+        // }
+        user
       })
     })
     .then(response => response.json())
