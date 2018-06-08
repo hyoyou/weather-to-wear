@@ -8,7 +8,7 @@ class Logout extends Component {
     event.preventDefault();
 
     this.props.actions.logout();
-    this.props.history.push('/')
+    this.props.history.push('/forecast')
   }
 
   render() {
