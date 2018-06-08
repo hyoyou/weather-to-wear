@@ -40,9 +40,20 @@ class Settings extends Component {
   }
 
   handleRemoveCity = (id) => {
+    const { user } = this.state;
+
+    user.user_cities_attributes.filter((city, cid) => {
+      if (id === cid) {
+        if (city.id) {
+          this.props.actions.deleteUserCity(city.id);
+          // console.log(city.id);
+        }
+      }
+    })
+
     this.setState({
-      user: { ...this.state.user,
-        user_cities_attributes: this.state.user.user_cities_attributes.filter((city, cid) => id !== cid)
+      user: { ...user,
+        user_cities_attributes: user.user_cities_attributes.filter((city, cid) => id !== cid)
       }
     })
   }

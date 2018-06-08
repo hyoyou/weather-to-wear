@@ -8,6 +8,7 @@ Rails.application.routes.draw do
     post '/find' => 'sessions#find'
     get '/logout' => 'sessions#destroy'
 
-    resources :cities, only: [:index, :create, :edit, :show, :update, :destroy]
+    resources :user_cities, only: [:destroy]
+    resources :cities, only: [:index, :create, :show]
   end
 end

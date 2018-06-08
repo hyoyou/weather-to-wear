@@ -28,6 +28,12 @@ export function updateUserSuccess(user) {
   }
 }
 
+export function deleteUserCitySuccess(city) {
+  return {
+    type: types.DELETE_USER_CITY_SUCCESS,
+    payload: city
+  }
+}
 
 export function loginUser(credentials) {
   return dispatch => {
@@ -110,6 +116,23 @@ export function updateUser(user) {
       dispatch(updateUserSuccess(result))
     })
     .catch(error => console.log(error))
+  }
+}
+
+export function deleteUserCity(userCityId) {
+  return dispatch => {
+    return fetch(`http://localhost:3001/api/user_cities/${userCityId}`, {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+    .then(response => response.json())
+    .then(result => {
+      // console.log(result)
+      // {id: 43, city_attributes: {id: 13, zip_code: "75001"}}
+      dispatch(deleteUserCitySuccess(result.id))
+    })
   }
 }
 

@@ -35,6 +35,16 @@ export default function sessionReducer(state = {
         session: !!localStorage.Token,
         user: action.payload
       }
+    case types.DELETE_USER_CITY_SUCCESS:
+      //id: 43
+      const userCities = state.user.user_cities_attributes.filter(userCity => userCity.id !== parseInt(action.payload))
+      // console.log(userCities)
+      return {
+        ...state,
+        user: { ...state.user,
+          user_cities_attributes: userCities
+        }
+      }
     case types.LOGOUT:
       return {
         session: !!localStorage.Token,
