@@ -4,6 +4,8 @@ class UserCity < ApplicationRecord
   belongs_to :user
   belongs_to :city
 
+  validates :city_id, uniqueness: true
+
   def city_attributes=(city_attributes)
     # binding.pry
     city_zip = city_attributes[:zip_code]

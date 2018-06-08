@@ -26,7 +26,7 @@ class Api::UsersController < ApplicationController
     if @user.update(user_params)
       render json: @user
     else
-      render json: { message: user.errors }, status: 401
+      render json: { message: @user.errors }, status: 401
     end
   end
 
