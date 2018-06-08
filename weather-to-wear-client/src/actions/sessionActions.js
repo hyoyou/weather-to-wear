@@ -129,8 +129,6 @@ export function deleteUserCity(userCityId) {
     })
     .then(response => response.json())
     .then(result => {
-      // console.log(result)
-      // {id: 43, city_attributes: {id: 13, zip_code: "75001"}}
       dispatch(deleteUserCitySuccess(result.id))
     })
   }

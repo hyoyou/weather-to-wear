@@ -46,7 +46,6 @@ class Settings extends Component {
       if (id === cid) {
         if (city.id) {
           this.props.actions.deleteUserCity(city.id);
-          // console.log(city.id);
         }
       }
     })
