@@ -92,8 +92,8 @@ class Settings extends Component {
           <form>
             <fieldset>
               <legend>Cities</legend>
-                {this.state.user.user_cities_attributes &&
-                this.state.user.user_cities_attributes.map((city, id) => (
+                {user.user_cities_attributes &&
+                user.user_cities_attributes.map((city, id) => (
                 <div className="city" key={id}>
                   <input
                     type="text"
