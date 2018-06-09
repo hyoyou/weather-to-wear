@@ -82,12 +82,13 @@ class Settings extends Component {
     this.props.history.push('/forecast');
   }
 
-
   render() {
+    const { user } = this.state;
+
     if (isLoggedIn) {
       return (
         <div>
-          <h2>{this.state.user.name}'s Settings</h2>
+          <h2>{user.name}'s Settings</h2>
           <form>
             <fieldset>
               <legend>Cities</legend>
@@ -97,6 +98,7 @@ class Settings extends Component {
                   <input
                     type="text"
                     name="zipcode"
+                    readOnly={city.id ? "readOnly" : ""}
                     placeholder={`City #${id + 1} Zip Code`}
                     value={city.city_attributes.zip_code}
                     onChange={(event) => this.handleZipCodeInput(id, event)}
@@ -112,8 +114,8 @@ class Settings extends Component {
               <input
                 type="checkbox"
                 name="cold_sensitivity"
-                value={this.state.user.cold_sensitivity}
-                checked={this.state.user.cold_sensitivity}
+                value={user.cold_sensitivity}
+                checked={user.cold_sensitivity}
                 onChange={(event) => this.onToggle(event)} />
               <label htmlFor="jacket">I cannot stand the cold!</label>
               <p>If checked, jacket will be recommended below 60&#8457; (Default recommendation is below 55&#8457;)</p>
@@ -121,8 +123,8 @@ class Settings extends Component {
               <input
                 type="checkbox"
                 name="opts_hands_free"
-                value={this.state.user.opts_hands_free}
-                checked={this.state.user.opts_hands_free}
+                value={user.opts_hands_free}
+                checked={user.opts_hands_free}
                 onChange={(event) => this.onToggle(event)} />
               <label htmlFor="umbrella">I do not like to carry things!</label>
               <p>If checked, umbrella will be recommended above 55% chance of rain (Default recommendation is above 50%)</p>
