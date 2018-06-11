@@ -10,7 +10,7 @@ class Api::UsersController < ApplicationController
     if user.save
       render json: { token: Auth.create_token(user) }
     else
-      render json: { message: user.errors }, status: 401
+      render json: { errors: { message: user.errors } }, status: 401
     end
   end
 
@@ -26,7 +26,7 @@ class Api::UsersController < ApplicationController
     if @user.update(user_params)
       render json: @user
     else
-      render json: { message: @user.errors }, status: 401
+      render json: { errors: { message: @user.errors } }, status: 401
     end
   end
 

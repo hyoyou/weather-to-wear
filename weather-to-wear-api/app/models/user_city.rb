@@ -4,7 +4,9 @@ class UserCity < ApplicationRecord
   belongs_to :user
   belongs_to :city
 
-  validates :city_id, uniqueness: true
+  # having below validation blocks user from saving same zip code more than once,
+  # but it also doesn't let user add the same zip code once deleted
+  # validates :city_id, uniqueness: true
 
   def city_attributes=(city_attributes)
     # binding.pry

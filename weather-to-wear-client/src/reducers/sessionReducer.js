@@ -10,30 +10,35 @@ export default function sessionReducer(state = {
         ...state,
         session: !!localStorage.Token,
         user: action.payload.user,
+        error: ''
       }
     case types.SIGN_UP_SUCCESS:
       return {
         ...state,
         session: !!localStorage.Token,
-        user: action.payload.user
+        user: action.payload.user,
+        error: ''
       }
     case types.FIND_USER_SUCCESS:
       return {
         ...state,
         session: !!localStorage.Token,
-        user: action.payload.user
+        user: action.payload.user,
+        error: ''
       }
     case types.LOAD_USER_SUCCESS:
       return {
         ...state,
         session: !!localStorage.Token,
-        user: action.payload
+        user: action.payload,
+        error: ''
       }
     case types.UPDATE_USER_SUCCESS:
       return {
         ...state,
         session: !!localStorage.Token,
-        user: action.payload
+        user: action.payload,
+        error: ''
       }
     case types.DELETE_USER_CITY_SUCCESS:
       const userCities = state.user.user_cities_attributes.filter(userCity => userCity.id !== parseInt(action.payload))

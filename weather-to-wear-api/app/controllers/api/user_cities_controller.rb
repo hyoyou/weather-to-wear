@@ -4,7 +4,7 @@ class Api::UserCitiesController < ApplicationController
     if @user_city.destroy
       render json: @user_city
     else
-      render json: { message: @user_city.errors }, status: 401
+      render json: { errors: { message: @user_city.errors } }, status: 401
     end
   end
 end

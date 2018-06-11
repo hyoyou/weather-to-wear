@@ -35,6 +35,13 @@ export function deleteUserCitySuccess(city) {
   }
 }
 
+export function userError(message) {
+  return {
+    type: types.USER_ERROR,
+    payload: message
+  }
+}
+
 export function loginUser(credentials) {
   return dispatch => {
     return fetch('http://localhost:3001/api/login', {
@@ -46,8 +53,13 @@ export function loginUser(credentials) {
     })
     .then(response => response.json())
     .then(result => {
-      localStorage.setItem('Token', result.token)
-      dispatch(loginSuccess(result))
+      if (result.errors) {
+        dispatch(userError(result.errors))
+      } else {
+        localStorage.setItem('Token', result.token)
+        dispatch(loginSuccess(result))
+        dispatch({ type: types.CLEAR_ERROR })
+      }
     })
     .catch(error => console.log(error))
   }
@@ -64,8 +76,13 @@ export function signupUser(userInfo) {
     })
     .then(response => response.json())
     .then(result => {
-      localStorage.setItem('Token', result.token)
-      dispatch(signupSuccess(result))
+      if (result.errors) {
+        dispatch(userError(result.errors))
+      } else {
+        localStorage.setItem('Token', result.token)
+        dispatch(signupSuccess(result))
+        dispatch({ type: types.CLEAR_ERROR })
+      }
     })
     .catch(error => console.log(error))
   }
@@ -83,7 +100,12 @@ export function findUser(token) {
     })
     .then(response => response.json())
     .then(result => {
-      dispatch(loadUser(result.user.user.id))
+      if (result.errors) {
+        dispatch(userError(result.errors))
+      } else {
+        dispatch(loadUser(result.user.user.id))
+        dispatch({ type: types.CLEAR_ERROR })
+      }
     })
     .catch(error => console.log(error))
   }
@@ -113,7 +135,12 @@ export function updateUser(user) {
     })
     .then(response => response.json())
     .then(result => {
-      dispatch(updateUserSuccess(result))
+      if (result.errors) {
+        dispatch(userError(result.errors))
+      } else {
+        dispatch(updateUserSuccess(result))
+        dispatch({ type: types.CLEAR_ERROR })
+      }
     })
     .catch(error => console.log(error))
   }
@@ -129,7 +156,12 @@ export function deleteUserCity(userCityId) {
     })
     .then(response => response.json())
     .then(result => {
-      dispatch(deleteUserCitySuccess(result.id))
+      if (result.errors) {
+        dispatch(userError(result.errors))
+      } else {
+        dispatch(deleteUserCitySuccess(result.id))
+        dispatch({ type: types.CLEAR_ERROR })
+      }
     })
   }
 }

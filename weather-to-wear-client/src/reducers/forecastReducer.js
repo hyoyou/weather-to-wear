@@ -17,7 +17,7 @@ export default function forecastReducer(state = {
       return {
         zipcode: action.payload
       }
-    case types.FETCH_FORECAST:
+    case types.FETCH_FORECAST_SUCCESS:
       return {
         ...state,
         icon: action.payload.icon_url,

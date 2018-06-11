@@ -34,6 +34,7 @@ class App extends Component {
         <Router>
           <div>
             <Route path='/' component={Home} />
+            { this.props.error ? <p style={{color:"red"}}>{ this.props.error }</p> : '' }
             <Switch>
               { isLoggedIn ?
                 <Route path='/forecast' render={(props) => <MyForecast cities={this.props.user.user_cities_attributes} forecast={this.props.forecast} />} />
@@ -55,7 +56,8 @@ class App extends Component {
 const mapStateToProps = (state) => {
   return {
     forecast: state.forecast,
-    user: state.session.user
+    user: state.session.user,
+    error: state.error.error
   }
 }
 
