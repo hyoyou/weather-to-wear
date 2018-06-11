@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 
 import NavBar from './NavBar';
 import NavBarUser from './NavBarUser';
+import SearchBar from '../containers/SearchBar';
 
 class Home extends Component {
   render() {
@@ -12,6 +13,7 @@ class Home extends Component {
           <h1 className="App-title">Weather to Wear</h1>
           { this.props.session ? <NavBarUser /> : <NavBar /> }
         </header>
+        <SearchBar />
       </div>
     );
   }

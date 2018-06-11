@@ -13,6 +13,7 @@ import Home from './components/Home';
 import Login from './containers/Login';
 import Logout from './containers/Logout';
 import MyForecast from './containers/MyForecast';
+import SearchBar from './containers/SearchBar';
 import Settings from './containers/Settings';
 import Signup from './containers/Signup';
 
@@ -37,9 +38,9 @@ class App extends Component {
             { this.props.error ? <p style={{color:"red"}}>{ this.props.error }</p> : '' }
             <Switch>
               { isLoggedIn ?
-                <Route path='/forecast' render={(props) => <MyForecast cities={this.props.user.user_cities_attributes} forecast={this.props.forecast} />} />
+                <Route exact path='/forecast' render={(props) => <MyForecast cities={this.props.user.user_cities_attributes} forecast={this.props.forecast} />} />
                 :
-                <Route path='/forecast' render={(props) => <ForecastOverview forecast={this.props.forecast} />} />
+                <Route exact path='/forecast' render={(props) => <ForecastOverview forecast={this.props.forecast} />} />
               }
               <Route exact path='/login' component={Login} />
               <Route exact path='/signup' component={Signup} />
