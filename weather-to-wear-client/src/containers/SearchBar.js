@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
-import { withRouter } from "react-router-dom";
 
-import * as forecastActions from '../actions/forecastActions';
 import ForecastDetail from '../components/ForecastDetail';
 
 const APIURL_FORECAST = `https://api.wunderground.com/api/${process.env.REACT_APP_WUNDERGROUND_API_KEY}/forecast10day/q`;
@@ -41,7 +39,7 @@ class SearchBar extends Component {
     const {forecast} = this.state;
 
     return (
-      <div>
+      <div style={{ marginTop: '50px' }}>
         <form onSubmit={event => this.onSearch(event)}>
           <div className="form-row justify-content-center py-4">
             <span role="img" aria-label="left pointing magnifying glass">&#x1F50D;</span>
@@ -72,4 +70,4 @@ class SearchBar extends Component {
   };
 }
 
-export default withRouter(SearchBar);
+export default SearchBar;

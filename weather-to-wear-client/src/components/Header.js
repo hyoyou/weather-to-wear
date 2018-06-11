@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 
 import NavBar from './NavBar';
 import NavBarUser from './NavBarUser';
-import SearchBar from '../containers/SearchBar';
 
 class Header extends Component {
   render() {

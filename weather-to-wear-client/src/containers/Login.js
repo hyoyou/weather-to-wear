@@ -28,7 +28,7 @@ class Login extends Component {
 
   render() {
     return (
-      <div>
+      <div style={{ marginTop: '50px' }}>
         <form>
           <input
             type="text"
