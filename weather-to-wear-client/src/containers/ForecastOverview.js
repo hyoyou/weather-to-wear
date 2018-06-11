@@ -18,17 +18,17 @@ class ForecastOverview extends Component {
 
   handleClick = (event) => {
     event.preventDefault();
-    // is this an anti-pattern?
-    this.setState({ extForecasts: [] });
-    // setTimeout?
+
     return fetch(`${APIURL_FORECAST}/${this.props.forecast.zipcode}.json`)
     .then(response => response.json())
     .then(result => {
+      let resultsArray = [];
+
       result.forecast.simpleforecast.forecastday.slice(1, 5).map(weather =>
-        this.setState(prevState => ({
-          extForecasts: [...prevState.extForecasts, weather]
-        }))
+        resultsArray.push(weather)
       )
+
+      this.setState({ extForecasts: resultsArray })
     })
 }
 
