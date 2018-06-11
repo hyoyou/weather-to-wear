@@ -9,7 +9,7 @@ import { findUser } from './actions/sessionActions';
 import { PrivateRoute } from './components/PrivateRoute';
 
 import ForecastOverview from './containers/ForecastOverview';
-import Home from './components/Home';
+import Header from './components/Header';
 import Login from './containers/Login';
 import Logout from './containers/Logout';
 import MyForecast from './containers/MyForecast';
@@ -34,9 +34,10 @@ class App extends Component {
       <div className="App">
         <Router>
           <div>
-            <Route path='/' component={Home} />
+            <Header />
             { this.props.error ? <p style={{color:"red"}}>{ this.props.error }</p> : '' }
             <Switch>
+              <Route exact path='/' component={SearchBar} />
               { isLoggedIn ?
                 <Route exact path='/forecast' render={(props) => <MyForecast cities={this.props.user.user_cities_attributes} forecast={this.props.forecast} />} />
                 :

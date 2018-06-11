@@ -5,15 +5,14 @@ import NavBar from './NavBar';
 import NavBarUser from './NavBarUser';
 import SearchBar from '../containers/SearchBar';
 
-class Home extends Component {
+class Header extends Component {
   render() {
     return (
       <div>
         <header className="App-header">
-          <h1 className="App-title">Weather to Wear</h1>
+          <h1 className="App-title"><a href="/">Weather to Wear</a></h1>
           { this.props.session ? <NavBarUser /> : <NavBar /> }
         </header>
-        <SearchBar />
       </div>
     );
   }
@@ -25,4 +24,4 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default connect(mapStateToProps)(Home);
+export default connect(mapStateToProps)(Header);

@@ -26,7 +26,6 @@ class SearchBar extends Component {
     event.preventDefault();
 
     const { zipcode } = this.state;
-    this.props.history.push(`/forecast/${zipcode}`);
 
     return fetch(`${APIURL_FORECAST}/${zipcode}.json`)
     .then(response => response.json())

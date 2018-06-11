@@ -8,7 +8,7 @@ const NavBarUser = props => {
         style={{ marginRight: '10px' }}
         to="/forecast"
       >
-        Home
+        Forecast
       </NavLink>
       <NavLink
         style={{ marginRight: '10px' }}
