@@ -10,7 +10,7 @@ class Header extends Component {
     return (
       <div>
         <header className="App-header">
-          <h1 className="App-title"><a href="/">Weather to Wear</a></h1>
+          <h1 className="App-title"><a href="/">Weather to Wear &#9730;</a></h1>
           { this.props.session ? <NavBarUser /> : <NavBar /> }
         </header>
       </div>

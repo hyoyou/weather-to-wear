@@ -15,7 +15,8 @@
 }
 
 .App-title {
-  font-size: 1.5em;
+  font-family: 'Bungee Shade', cursive;
+  font-size: 3em;
 }
 
 .App-intro {
@@ -32,4 +33,18 @@ fieldset {
   margin: 50px;
   padding: 20px;
   border: 1px solid #222;
+}
+
+h1 a {
+  text-decoration: none;
+  color: grey;
+}
+
+a {
+  color: grey;
+}
+
+a:hover, a:active {
+  text-decoration: none;
+  color: #c2d1f0;
 }
