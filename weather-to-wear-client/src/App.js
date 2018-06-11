@@ -1,12 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
 import './App.css';
 
 import { fetchLocation } from './actions/forecastActions';
 import { findUser } from './actions/sessionActions';
-import { PrivateRoute } from './components/PrivateRoute';
 
 import ForecastOverview from './containers/ForecastOverview';
 import Header from './components/Header';
@@ -29,6 +28,13 @@ class App extends Component {
     }
   }
 
+  shouldComponentUpdate(nextProps) {
+    console.log("Next:", nextProps);
+    console.log("This:", this.props)
+    console.log(nextProps.user !== this.props.user)
+    return nextProps.user !== this.props.user;
+  }
+
   render() {
     return (
       <div className="App">
@@ -45,7 +51,7 @@ class App extends Component {
               }
               <Route exact path='/login' component={Login} />
               <Route exact path='/signup' component={Signup} />
-              <PrivateRoute exact path='/logout' component={Logout} />
+              <Route exact path='/logout' component={Logout} />
               <Route exact path='/settings' render={(props) => <Settings user={this.props.user} />} />
             </Switch>
           </div>
