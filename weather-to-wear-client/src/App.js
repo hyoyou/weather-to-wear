@@ -6,6 +6,7 @@ import './App.css';
 
 import { fetchLocation } from './actions/forecastActions';
 import { findUser } from './actions/sessionActions';
+import { PrivateRoute } from './components/PrivateRoute';
 
 import ForecastOverview from './containers/ForecastOverview';
 import Header from './components/Header';
@@ -42,10 +43,26 @@ class App extends Component {
                 :
                 <Route exact path='/forecast' render={(props) => <ForecastOverview forecast={this.props.forecast} />} />
               }
-              <Route exact path='/login' component={Login} />
-              <Route exact path='/signup' component={Signup} />
-              <Route exact path='/logout' component={Logout} />
-              <Route exact path='/settings' render={(props) => <Settings user={this.props.user} />} />
+              { isLoggedIn ?
+                <Redirect from='/login' to='/forecast' />
+                :
+                <Route exact path='/login' component={Login} />
+              }
+              { isLoggedIn ?
+                <Redirect from='/signup' to='/forecast' />
+                :
+                <Route exact path='/signup' component={Signup} />
+              }
+              { isLoggedIn ?
+                <Route exact path='/logout' component={Logout} />
+                :
+                <Redirect from='/logout' to='/login' />
+              }
+              { isLoggedIn ?
+                <Route exact path='/settings' render={(props) => <Settings user={this.props.user} />} />
+                :
+                <Redirect from='/settings' to='/login' />
+              }
             </Switch>
           </div>
         </Router>

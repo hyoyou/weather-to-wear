@@ -3,8 +3,6 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import * as sessionActions from '../actions/sessionActions';
 
-const isLoggedIn = localStorage.getItem('Token') ? true : false;
-
 class Login extends Component {
   constructor(props) {
     super(props);
