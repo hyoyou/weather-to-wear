@@ -11,9 +11,7 @@ class Logout extends Component {
     event.preventDefault();
 
     this.props.actions.logout();
-
     this.setState({ isLoggedOut: true })
-    // this.props.history.push('/');
   }
 
   render() {
