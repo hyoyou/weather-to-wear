@@ -27,7 +27,6 @@ class Login extends Component {
 
     this.props.actions.loginUser(this.state);
     this.setState({ isLoggedIn: true })
-    // this.props.history.push('/forecast');
   }
 
   render() {
