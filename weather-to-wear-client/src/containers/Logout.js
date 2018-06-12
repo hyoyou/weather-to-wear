@@ -4,18 +4,20 @@ import { connect } from 'react-redux';
 import { Redirect } from 'react-router';
 import * as sessionActions from '../actions/sessionActions';
 
-const isLoggedIn = localStorage.getItem('Token') ? true : false;
-
 class Logout extends Component {
+  state = { isloggedOut: false }
+
   onLogout = event => {
     event.preventDefault();
 
     this.props.actions.logout();
-    this.props.history.push('/');
+
+    this.setState({ isLoggedOut: true })
+    // this.props.history.push('/');
   }
 
   render() {
-    if (isLoggedIn) {
+    if (!this.state.isLoggedOut) {
       return (
         <div style={{ marginTop: '50px' }}>
           <h2>Are you sure you want to log out?</h2>
@@ -24,7 +26,7 @@ class Logout extends Component {
       )
     } else {
       return (
-        <Redirect push to='/' />
+        <h1 style={{ marginTop: '50px' }}><a href="/forecast">Get Forecast for Current Location</a></h1>
       )
     }
   }

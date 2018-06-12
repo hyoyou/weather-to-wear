@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { withRouter, Redirect } from 'react-router-dom';
 import * as sessionActions from '../actions/sessionActions';
 
 const isLoggedIn = localStorage.getItem('Token') ? true : false;
@@ -12,7 +11,8 @@ class Login extends Component {
 
     this.state = {
       email: '',
-      password: ''
+      password: '',
+      isLoggedIn: false
     }
   }
 
@@ -26,13 +26,14 @@ class Login extends Component {
     event.preventDefault();
 
     this.props.actions.loginUser(this.state);
-    this.props.history.push('/forecast');
+    this.setState({ isLoggedIn: true })
+    // this.props.history.push('/forecast');
   }
 
   render() {
-    if (isLoggedIn) {
+    if (this.state.isLoggedIn) {
       return (
-        <Redirect push to='/forecast' />
+        <h1 style={{ marginTop: '50px' }}><a href="/forecast">Go to My Forecast</a></h1>
       )
     } else {
       return (
@@ -66,4 +67,4 @@ function mapDispatchToProps(dispatch) {
   }
 }
 
-export default withRouter(connect(null, mapDispatchToProps)(Login));
+export default connect(null, mapDispatchToProps)(Login);

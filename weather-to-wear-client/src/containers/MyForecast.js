@@ -16,10 +16,6 @@ class MyForecast extends Component {
     }
   }
 
-  componentDidMount() {
-    this.setState({ cities: this.props.cities })
-  }
-
   componentWillReceiveProps(nextProps) {
     this.setState({
       cities: nextProps.cities

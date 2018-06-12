@@ -28,13 +28,6 @@ class App extends Component {
     }
   }
 
-  shouldComponentUpdate(nextProps) {
-    console.log("Next:", nextProps);
-    console.log("This:", this.props)
-    console.log(nextProps.user !== this.props.user)
-    return nextProps.user !== this.props.user;
-  }
-
   render() {
     return (
       <div className="App">
@@ -53,6 +46,7 @@ class App extends Component {
               <Route exact path='/signup' component={Signup} />
               <Route exact path='/logout' component={Logout} />
               <Route exact path='/settings' render={(props) => <Settings user={this.props.user} />} />
+              <Route path="empty" component={null} key="empty"/>
             </Switch>
           </div>
         </Router>
