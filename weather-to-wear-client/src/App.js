@@ -6,7 +6,6 @@ import './App.css';
 
 import { fetchLocation } from './actions/forecastActions';
 import { findUser } from './actions/sessionActions';
-import { PrivateRoute } from './components/PrivateRoute';
 
 import ForecastOverview from './containers/ForecastOverview';
 import Header from './components/Header';

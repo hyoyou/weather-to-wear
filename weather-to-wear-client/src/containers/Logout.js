@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { Redirect } from 'react-router';
 import * as sessionActions from '../actions/sessionActions';
 
 class Logout extends Component {
