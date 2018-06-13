@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
-import ForecastDetail from '../components/ForecastDetail';
-import ExtendedForecast from '../components/ExtendedForecast';
+import ForecastDetail from './ForecastDetail';
+import ExtendedForecast from './ExtendedForecast';
 
 const APIURL_FORECAST = `https://api.wunderground.com/api/${process.env.REACT_APP_WUNDERGROUND_API_KEY}/forecast10day/q`;
 
