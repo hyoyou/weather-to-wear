@@ -54,6 +54,8 @@ class SearchBar extends Component {
 
     return (
       <div style={{ marginTop: '50px' }}>
+        <h3>Show me the weather in...</h3>
+
         <form onSubmit={event => this.onSearch(event)}>
           <div className="form-row justify-content-center py-4">
             <span role="img" aria-label="left pointing magnifying glass">&#x1F50D;</span>
@@ -65,8 +67,9 @@ class SearchBar extends Component {
                 placeholder="Zip Code"
                 onChange={this.onInputZipCode} />
             </div>
-            <button className="btn btn-outline-dark btn-sm" type="submit">Search</button>
           </div>
+
+          <button className="btn btn-outline-dark" type="submit">Search</button>
         </form>
 
         {this.state.forecast &&

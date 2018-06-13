@@ -36,21 +36,27 @@ class Login extends Component {
       return (
         <div style={{ marginTop: '50px' }}>
           <form>
+            <label className="col-sm-2 col-form-label">Email</label>
             <input
               type="text"
               name="email"
               placeholder="Email Address"
               value={this.state.email}
-              onChange={(event) => this.onInput(event)} />
+              onChange={(event) => this.onInput(event)}
+            />
+            <br />
 
+            <label className="col-sm-2 col-form-label">Password</label>
             <input
               type="password"
               name="password"
               placeholder="Password"
               value={this.state.password}
-              onChange={(event) => this.onInput(event)} />
+              onChange={(event) => this.onInput(event)}
+            />
+            <br />
 
-            <button type="submit" className="btn btn-primary" onClick={this.onLogin}>Log In</button>
+            <button type="submit" className="btn btn-outline-dark" onClick={this.onLogin}>Log In</button>
           </form>
         </div>
       )

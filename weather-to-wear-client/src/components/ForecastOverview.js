@@ -45,7 +45,7 @@ class ForecastOverview extends Component {
           low_temperature={forecast.lowTemperature}
           precipitation={forecast.precipitation}
         />
-        <button onClick={(event) => this.handleClick(event)}>Get Extended Forecast</button>
+        <button className="btn btn-outline-dark" onClick={(event) => this.handleClick(event)}>Get Extended Forecast</button>
         <ExtendedForecast
           zipcode={forecast.zipcode}
           forecasts={this.state.extForecasts}

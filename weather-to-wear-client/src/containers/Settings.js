@@ -133,8 +133,8 @@ class Settings extends Component {
             <br />
           </fieldset>
 
-          <button type="submit" className="btn btn-primary" style={{ marginRight: '10px' }} onClick={this.onSave}>Save</button>
-          <button type="submit" className="btn btn-warning" style={{ marginLeft: '10px' }} onClick={this.onCancel}>Cancel</button>
+          <button type="submit" className="btn btn-outline-primary" style={{ marginRight: '10px' }} onClick={this.onSave}>Save</button>
+          <button type="submit" className="btn btn-outline-warning" style={{ marginLeft: '10px' }} onClick={this.onCancel}>Cancel</button>
         </form>
       </div>
     )

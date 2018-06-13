@@ -3,7 +3,7 @@ import { NavLink } from 'react-router-dom';
 
 const NavBarUser = props => {
   return (
-    <div style={{ paddingBottom: '10px', marginBottom: '12px' }}>
+    <div className="navi">
       <NavLink
         style={{ marginRight: '10px' }}
         to="/forecast"

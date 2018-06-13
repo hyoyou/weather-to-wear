@@ -1,31 +1,37 @@
 .App {
+  margin-top: 2%;
+  margin-bottom: 2%;
+  margin-left: 5%;
+  margin-right: 5%;
   text-align: center;
-}
-
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
+  border: 1px solid #00171F;
+  border-radius: 17px;
+  padding-bottom: 3%;
+  color: #00171F;
+  background-color: #F5F1ED;
 }
 
 .App-header {
-  background-color: #222;
-  height: 150px;
-  padding: 20px;
-  color: white;
+  background-color: #00171F;
+  height: 3%;
+  padding: 40px 20px;
+  border-radius: 15px 15px 0px 0px;
 }
 
 .App-title {
   font-family: 'Bungee Shade', cursive;
-  font-size: 3em;
+  font-size: 3.5em;
 }
 
 .App-intro {
   font-size: large;
 }
 
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+.navi {
+  font-family: 'Lalezar', cursive;
+  font-size: 1.5em;
+  padding-bottom: '10px';
+  margin-bottom: '12px';
 }
 
 fieldset {
@@ -33,6 +39,10 @@ fieldset {
   margin: 50px;
   padding: 20px;
   border: 1px solid #222;
+}
+
+body {
+  background-color: #70798C;
 }
 
 footer {
@@ -46,14 +56,18 @@ footer {
 
 h1 a {
   text-decoration: none;
-  color: grey;
+  color: #DFDCD8;
 }
 
 a {
-  color: grey;
+  color: #DFDCD8;
 }
 
 a:hover, a:active {
   text-decoration: none;
-  color: #c2d1f0;
+  color: #7786AA;
+}
+
+button {
+  margin-top: 15px;
 }

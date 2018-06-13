@@ -37,7 +37,6 @@ class MyForecast extends Component {
 
       return (
         <div>
-          <h1>My Forecasts</h1>
           <ForecastButtons cities={citiesArray} onClick={this.handleClick} />
           <ForecastOverview forecast={this.props.forecast} forecasts={this.state.extForecasts} />
         </div>

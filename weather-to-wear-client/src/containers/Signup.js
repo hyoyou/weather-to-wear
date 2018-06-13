@@ -21,43 +21,53 @@ class SignUp extends Component {
     })
   }
 
-  onSignup = (event) => {
+  onSignup = event => {
     event.preventDefault();
 
-    this.props.actions.signupUser(this.state);
-    this.props.history.push('/settings');
+    this.props.actions.signupUser(this.state)
   }
 
   render() {
     if (this.props.user.id) {
       return (
-        <Redirect to='/forecast' />
+        <Redirect to='/settings' />
       )
     }
 
     return (
       <div style={{ marginTop: '50px' }}>
         <form>
+          <label className="col-sm-2 col-form-label">Name</label>
           <input
             type="text"
             name="name"
             placeholder="Name"
             value={this.state.name}
-            onChange={(event) => this.onInput(event)} />
+            onChange={(event) => this.onInput(event)}
+          />
+          <br />
+
+          <label className="col-sm-2 col-form-label">Email</label>
           <input
             type="text"
             name="email"
             placeholder="Email Address"
             value={this.state.email}
-            onChange={(event) => this.onInput(event)} />
+            onChange={(event) => this.onInput(event)}
+          />
+          <br />
+
+          <label className="col-sm-2 col-form-label">Password</label>
           <input
             type="password"
             name="password"
             placeholder="Password"
             value={this.state.password}
-            onChange={(event) => this.onInput(event)} />
+            onChange={(event) => this.onInput(event)}
+          />
+          <br />
 
-          <button type="submit" className="btn btn-primary" onClick={this.onSignup}>Sign Up</button>
+          <button type="submit" className="btn btn-outline-dark" onClick={this.onSignup}>Sign Up</button>
         </form>
       </div>
     )
