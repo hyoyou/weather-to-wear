@@ -4,7 +4,7 @@ import { bindActionCreators } from 'redux';
 import * as forecastActions from '../actions/forecastActions';
 
 import ForecastButtons from '../components/ForecastButtons';
-import ForecastOverview from './ForecastOverview';
+import ForecastOverview from '../components/ForecastOverview';
 
 class MyForecast extends Component {
   constructor(props) {
@@ -42,7 +42,8 @@ class MyForecast extends Component {
           <ForecastOverview forecast={this.props.forecast} forecasts={this.state.extForecasts} />
         </div>
       )
-    } else {
+    }
+    else {
       return (
         <h2>Loading...</h2>
       )

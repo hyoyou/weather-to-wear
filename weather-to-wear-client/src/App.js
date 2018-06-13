@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import './App.css';
 
 import { fetchLocation } from './actions/forecastActions';
 import { findUser } from './actions/sessionActions';
 
-import ForecastOverview from './containers/ForecastOverview';
+import ForecastOverview from './components/ForecastOverview';
 import Header from './components/Header';
 import Login from './containers/Login';
 import Logout from './containers/Logout';
@@ -16,13 +16,12 @@ import SearchBar from './containers/SearchBar';
 import Settings from './containers/Settings';
 import Signup from './containers/Signup';
 
-const isLoggedIn = localStorage.getItem('Token') ? true : false;
-
 class App extends Component {
   componentDidMount() {
     this.props.fetchLocation();
+    console.log("App")
 
-    const token = localStorage.getItem('Token')
+    const token = localStorage.getItem('Token');
     if (token) {
       this.props.findUser(token);
     }
@@ -37,31 +36,15 @@ class App extends Component {
             { this.props.error ? <p style={{color:"red"}}>{ this.props.error }</p> : '' }
             <Switch>
               <Route exact path='/' component={SearchBar} />
-              { isLoggedIn ?
+              { this.props.user.id ?
                 <Route exact path='/forecast' render={(props) => <MyForecast cities={this.props.user.user_cities_attributes} forecast={this.props.forecast} />} />
                 :
                 <Route exact path='/forecast' render={(props) => <ForecastOverview forecast={this.props.forecast} />} />
               }
-              { isLoggedIn ?
-                <Redirect from='/login' to='/forecast' />
-                :
-                <Route exact path='/login' component={Login} />
-              }
-              { isLoggedIn ?
-                <Redirect from='/signup' to='/forecast' />
-                :
-                <Route exact path='/signup' component={Signup} />
-              }
-              { isLoggedIn ?
-                <Route exact path='/logout' component={Logout} />
-                :
-                <Redirect from='/logout' to='/login' />
-              }
-              { isLoggedIn ?
-                <Route exact path='/settings' render={(props) => <Settings user={this.props.user} />} />
-                :
-                <Redirect from='/settings' to='/login' />
-              }
+              <Route exact path='/login' component={Login} />
+              <Route exact path='/signup' component={Signup} />
+              <Route exact path='/logout' component={Logout} />
+              <Route exact path='/settings' render={(props) => <Settings user={this.props.user} />} />
             </Switch>
           </div>
         </Router>

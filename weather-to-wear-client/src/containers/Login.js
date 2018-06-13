@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
+import { Redirect, withRouter } from 'react-router-dom';
 import * as sessionActions from '../actions/sessionActions';
 
 class Login extends Component {
@@ -9,8 +10,7 @@ class Login extends Component {
 
     this.state = {
       email: '',
-      password: '',
-      isLoggedIn: false
+      password: ''
     }
   }
 
@@ -23,14 +23,14 @@ class Login extends Component {
   onLogin = event => {
     event.preventDefault();
 
-    this.props.actions.loginUser(this.state);
-    this.setState({ isLoggedIn: true })
+    this.props.actions.loginUser(this.state)
+    this.props.history.push('/forecast');
   }
 
   render() {
-    if (this.state.isLoggedIn) {
+    if (this.props.user.id) {
       return (
-        <h1 style={{ marginTop: '50px' }}><a href="/forecast">Go to My Forecast</a></h1>
+        <Redirect push to="/forecast" />
       )
     } else {
       return (
@@ -58,10 +58,16 @@ class Login extends Component {
   }
 }
 
+function mapStateToProps(state) {
+  return {
+    user: state.session.user
+  }
+}
+
 function mapDispatchToProps(dispatch) {
   return {
     actions: bindActionCreators(sessionActions, dispatch)
   }
 }
 
-export default connect(null, mapDispatchToProps)(Login);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Login));
