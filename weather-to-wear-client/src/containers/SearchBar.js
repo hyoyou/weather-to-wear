@@ -10,7 +10,8 @@ class SearchBar extends Component {
 
     this.state = {
       zipcode: '',
-      forecast: ''
+      forecast: '',
+      error: ''
     }
   }
 
@@ -28,15 +29,28 @@ class SearchBar extends Component {
     return fetch(`${APIURL_FORECAST}/${zipcode}.json`)
     .then(response => response.json())
     .then(result => {
-      this.setState({
-        ...this.state,
-        forecast: result.forecast.simpleforecast.forecastday[0]
-      })
+      if(result.response.error) {
+        this.setState({ error: result.response.error.description })
+      } else {
+        this.setState({
+          ...this.state,
+          forecast: result.forecast.simpleforecast.forecastday[0]
+        })
+      }
     })
   }
 
   render() {
     const {forecast} = this.state;
+
+    if (this.state.error) {
+      return (
+        <div style={{ marginTop: '50px' }}>
+          <p>{this.state.error}</p>
+          <p>Please check the zip code and try your search again</p>
+        </div>
+      )
+    }
 
     return (
       <div style={{ marginTop: '50px' }}>
