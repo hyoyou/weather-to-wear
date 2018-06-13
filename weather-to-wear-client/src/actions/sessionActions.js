@@ -1,12 +1,5 @@
 import * as types from './actionTypes';
 
-export function loginSuccess(user) {
-  return {
-    type: types.LOG_IN_SUCCESS,
-    payload: user
-  }
-}
-
 export function signupSuccess(user) {
   return {
     type: types.SIGN_UP_SUCCESS,
@@ -57,7 +50,7 @@ export function loginUser(credentials) {
         dispatch(userError(result.errors))
       } else {
         localStorage.setItem('Token', result.token)
-        dispatch(loginSuccess(result))
+        dispatch(loadUser(result.user.id))
         dispatch({ type: types.CLEAR_ERROR })
       }
     })

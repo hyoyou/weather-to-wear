@@ -5,7 +5,6 @@ export const FIND_USER_SUCCESS = 'FIND_USER_SUCCESS';
 export const FORECAST_ERROR = 'FORECAST_ERROR';
 export const GET_ZIPCODE = 'GET_ZIPCODE';
 export const LOAD_USER_SUCCESS = 'LOAD_USER_SUCCESS';
-export const LOG_IN_SUCCESS = 'LOG_IN_SUCCESS';
 export const LOGOUT = 'LOGOUT';
 export const SET_ZIPCODE = 'SET_ZIPCODE';
 export const SIGN_UP_SUCCESS = 'SIGN_UP_SUCCESS';
