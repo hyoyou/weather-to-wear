@@ -1,18 +1,17 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux';
 
-const isLoggedIn = localStorage.getItem('Token') ? true : false;
-
 class Jacket extends Component {
   render() {
-    const temperature = this.props.temperature;
+    const { temperature } = this.props;
+
     return (
       <div style={{ marginBottom: '50px' }}>
         <h2>Jacket Recommended?</h2>
-        { isLoggedIn && this.props.cold ?
-          temperature < 60 ? <h1>YES</h1> : <h1>NO</h1>
+        { this.props.user.id && this.props.cold ?
+          parseInt(temperature, 10) < 60 ? <h1>YES</h1> : <h1>NO</h1>
           :
-          temperature < 55 ? <h1>YES</h1> : <h1>NO</h1>
+          parseInt(temperature, 10) < 55 ? <h1>YES</h1> : <h1>NO</h1>
         }
       </div>
     )
@@ -21,6 +20,7 @@ class Jacket extends Component {
 
 const mapStateToProps = (state) => {
   return {
+    user: state.session.user,
     cold: state.session.user.cold_sensitivity
   }
 }

@@ -1,18 +1,17 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-const isLoggedIn = localStorage.getItem('Token') ? true : false;
-
 class Umbrella extends Component {
   render() {
-    const precipitation = this.props.precipitation
+    const { precipitation } = this.props ;
+
     return (
       <div>
         <h2>Umbrella Recommended?</h2>
-        { isLoggedIn && this.props.handsfree ?
-          precipitation > 55 ? <h1>YES</h1> : <h1>NO</h1>
+        { this.props.user.id && this.props.handsfree ?
+          parseInt(precipitation, 10) > 55 ? <h1>YES</h1> : <h1>NO</h1>
           :
-          precipitation > 50 ? <h1>YES</h1> : <h1>NO</h1>
+          parseInt(precipitation, 10) > 50 ? <h1>YES</h1> : <h1>NO</h1>
         }
       </div>
     )
@@ -21,6 +20,7 @@ class Umbrella extends Component {
 
 const mapStateToProps = (state) => {
   return {
+    user: state.session.user,
     handsfree: state.session.user.opts_hands_free
   }
 }
