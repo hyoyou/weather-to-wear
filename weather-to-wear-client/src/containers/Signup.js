@@ -67,7 +67,7 @@ class SignUp extends Component {
           />
           <br />
 
-          <button type="submit" className="btn btn-outline-dark" onClick={this.onSignup}>Sign Up</button>
+          <button type="submit" className="btn btn-outline-dark btn-margin" onClick={this.onSignup}>Sign Up</button>
         </form>
       </div>
     )

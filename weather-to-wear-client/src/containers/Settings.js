@@ -105,10 +105,10 @@ class Settings extends Component {
                   value={city.city_attributes.zip_code}
                   onChange={(event) => this.handleZipCodeInput(id, event)}
                 />
-                <button type="button" onClick={(event) => this.handleRemoveCity(id)}>Remove City</button>
+                <button type="button" className="btn btn-outline-dark btn-sm" onClick={(event) => this.handleRemoveCity(id)}>Remove City</button>
               </div>
             ))}
-            <button type="button" onClick={this.handleAddCity}>Add City</button>
+            <button type="button" className="btn btn-outline-dark btn-margin" onClick={this.handleAddCity}>Add City</button>
           </fieldset>
 
           <fieldset>
@@ -133,7 +133,7 @@ class Settings extends Component {
             <br />
           </fieldset>
 
-          <button type="submit" className="btn btn-outline-primary" style={{ marginRight: '10px' }} onClick={this.onSave}>Save</button>
+          <button type="submit" className="btn btn-outline-dark" style={{ marginRight: '10px' }} onClick={this.onSave}>Save</button>
           <button type="submit" className="btn btn-outline-warning" style={{ marginLeft: '10px' }} onClick={this.onCancel}>Cancel</button>
         </form>
       </div>

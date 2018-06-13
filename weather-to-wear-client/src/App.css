@@ -38,7 +38,8 @@ fieldset {
   display: block;
   margin: 50px;
   padding: 20px;
-  border: 1px solid #222;
+  border: 1px solid #00171F;
+  border-radius: 17px;
 }
 
 body {
@@ -68,6 +69,6 @@ a:hover, a:active {
   color: #7786AA;
 }
 
-button {
+.btn-margin {
   margin-top: 15px;
 }
