@@ -4,13 +4,15 @@ import ForecastDetail from './ForecastDetail';
 
 class ExtendedForecast extends Component {
   render() {
+    const { forecasts, zipcode } = this.props;
+    
     return(
       <div>
-        {this.props.forecasts && this.props.forecasts.map((forecast, index)=>
+        {forecasts && forecasts.map((forecast, index)=>
           <ForecastDetail
             key={index}
             date={forecast.date.weekday}
-            zipcode={this.props.zipcode}
+            zipcode={zipcode}
             icon={forecast.icon_url}
             condition={forecast.conditions}
             high_temperature={forecast.high.fahrenheit}

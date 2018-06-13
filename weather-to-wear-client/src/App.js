@@ -19,7 +19,6 @@ import Signup from './containers/Signup';
 class App extends Component {
   componentDidMount() {
     this.props.fetchLocation();
-    console.log("App")
 
     const token = localStorage.getItem('Token');
     if (token) {
@@ -28,23 +27,25 @@ class App extends Component {
   }
 
   render() {
+    const { user, forecast, error } = this.props;
+
     return (
       <div className="App">
         <Router>
           <div>
             <Header />
-            { this.props.error ? <p style={{color:"red"}}>{ this.props.error }</p> : '' }
+            { error ? <p style={{color:"red"}}>{ error }</p> : '' }
             <Switch>
               <Route exact path='/' component={SearchBar} />
-              { this.props.user.id ?
-                <Route exact path='/forecast' render={(props) => <MyForecast cities={this.props.user.user_cities_attributes} forecast={this.props.forecast} />} />
+              { user.id ?
+                <Route exact path='/forecast' render={(props) => <MyForecast cities={user.user_cities_attributes} forecast={forecast} />} />
                 :
-                <Route exact path='/forecast' render={(props) => <ForecastOverview forecast={this.props.forecast} />} />
+                <Route exact path='/forecast' render={(props) => <ForecastOverview forecast={forecast} />} />
               }
               <Route exact path='/login' component={Login} />
               <Route exact path='/signup' component={Signup} />
               <Route exact path='/logout' component={Logout} />
-              <Route exact path='/settings' render={(props) => <Settings user={this.props.user} />} />
+              <Route exact path='/settings' render={(props) => <Settings user={user} />} />
             </Switch>
           </div>
         </Router>

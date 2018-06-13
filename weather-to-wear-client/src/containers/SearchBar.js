@@ -41,12 +41,12 @@ class SearchBar extends Component {
   }
 
   render() {
-    const {forecast} = this.state;
+    const { zipcode, forecast, error } = this.state;
 
-    if (this.state.error) {
+    if (error) {
       return (
         <div style={{ marginTop: '50px' }}>
-          <p>{this.state.error}</p>
+          <p>{error}</p>
           <p>Please check the zip code and try your search again</p>
         </div>
       )
@@ -63,7 +63,7 @@ class SearchBar extends Component {
               <input
                 type="text"
                 className="form-control"
-                value={this.state.zipcode}
+                value={zipcode}
                 placeholder="Zip Code"
                 onChange={this.onInputZipCode} />
             </div>
@@ -72,9 +72,9 @@ class SearchBar extends Component {
           <button className="btn btn-outline-dark" type="submit">Search</button>
         </form>
 
-        {this.state.forecast &&
+        { forecast &&
           <ForecastDetail
-            zipcode={this.state.zipcode}
+            zipcode={zipcode}
             icon={forecast.icon_url}
             condition={forecast.conditions}
             high_temperature={forecast.high.fahrenheit}

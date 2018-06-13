@@ -3,12 +3,12 @@ import { connect } from 'react-redux';
 
 class Umbrella extends Component {
   render() {
-    const { precipitation } = this.props ;
+    const { precipitation, user, handsfree } = this.props ;
 
     return (
       <div>
         <h2>Umbrella Recommended?</h2>
-        { this.props.user.id && this.props.handsfree ?
+        { user.id && handsfree ?
           parseInt(precipitation, 10) > 55 ? <h1>YES</h1> : <h1>NO</h1>
           :
           parseInt(precipitation, 10) > 50 ? <h1>YES</h1> : <h1>NO</h1>
