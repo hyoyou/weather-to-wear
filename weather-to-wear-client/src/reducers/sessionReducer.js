@@ -5,13 +5,6 @@ export default function sessionReducer(state = {
   user: {}
 }, action) {
   switch(action.type) {
-    case types.SIGN_UP_SUCCESS:
-      return {
-        ...state,
-        session: !!localStorage.Token,
-        user: action.payload.user,
-        error: ''
-      }
     case types.FIND_USER_SUCCESS:
       return {
         ...state,

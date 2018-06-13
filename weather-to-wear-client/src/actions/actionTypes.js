@@ -7,6 +7,5 @@ export const GET_ZIPCODE = 'GET_ZIPCODE';
 export const LOAD_USER_SUCCESS = 'LOAD_USER_SUCCESS';
 export const LOGOUT = 'LOGOUT';
 export const SET_ZIPCODE = 'SET_ZIPCODE';
-export const SIGN_UP_SUCCESS = 'SIGN_UP_SUCCESS';
 export const UPDATE_USER_SUCCESS = 'UPDATE_USER_SUCCESS';
 export const USER_ERROR = 'USER_ERROR';
