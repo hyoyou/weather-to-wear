@@ -27,7 +27,7 @@ export default function sessionReducer(state = {
         error: ''
       }
     case types.DELETE_USER_CITY_SUCCESS:
-      const userCities = state.user.user_cities_attributes.filter(userCity => userCity.id !== parseInt(action.payload))
+      const userCities = state.user.user_cities_attributes.filter(userCity => userCity.id !== parseInt(action.payload, 10))
 
       return {
         ...state,
