@@ -54,18 +54,18 @@ class SearchBar extends Component {
 
         <form onSubmit={event => this.onSearch(event)}>
           <div className="form-row justify-content-center py-4">
-            <span role="img" aria-label="left pointing magnifying glass">&#x1F50D;</span>
+            <label htmlFor="search"><span role="img" aria-label="left pointing magnifying glass">&#x1F50D;</span></label>
             <div className="col-auto">
               <input
                 type="text"
+                id="search"
                 className="form-control"
                 value={zipcode}
                 placeholder="Zip Code"
                 onChange={this.onInputZipCode} />
             </div>
+            <button className="btn btn-outline-dark" type="submit">Search</button>
           </div>
-
-          <button className="btn btn-outline-dark" type="submit">Search</button>
         </form>
 
         { forecast &&

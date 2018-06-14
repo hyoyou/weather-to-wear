@@ -5,7 +5,7 @@ import { updateUser, deleteUserCity } from '../actions/sessionActions';
 
 class Settings extends Component {
   state = { user: this.props.user };
-  
+
   componentWillReceiveProps(nextProps) {
     this.setState({ user: nextProps.user })
   }
@@ -110,6 +110,7 @@ class Settings extends Component {
             <legend>Preferences</legend>
             <input
               type="checkbox"
+              id="jacket"
               name="cold_sensitivity"
               value={user.cold_sensitivity}
               checked={user.cold_sensitivity}
@@ -119,6 +120,7 @@ class Settings extends Component {
             <br />
             <input
               type="checkbox"
+              id="umbrella"
               name="opts_hands_free"
               value={user.opts_hands_free}
               checked={user.opts_hands_free}

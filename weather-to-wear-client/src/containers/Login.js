@@ -31,9 +31,10 @@ class Login extends Component {
       return (
         <div style={{ marginTop: '50px' }}>
           <form>
-            <label className="col-sm-2 col-form-label">Email</label>
+            <label className="col-sm-2 col-form-label" htmlFor="email">Email</label>
             <input
               type="text"
+              id="email"
               name="email"
               placeholder="Email Address"
               value={this.state.email}
@@ -41,9 +42,10 @@ class Login extends Component {
             />
             <br />
 
-            <label className="col-sm-2 col-form-label">Password</label>
+            <label className="col-sm-2 col-form-label" htmlFor="password">Password</label>
             <input
               type="password"
+              id="password"
               name="password"
               placeholder="Password"
               value={this.state.password}
