@@ -1,11 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import './App.css';
-
 import { fetchLocation } from './actions/forecastActions';
 import { findUser } from './actions/sessionActions';
+import './App.css';
 
 import ForecastOverview from './containers/ForecastOverview';
 import Header from './components/Header';
@@ -62,10 +60,4 @@ const mapStateToProps = (state) => {
   }
 }
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    ...bindActionCreators({ fetchLocation, findUser }, dispatch)
-  }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default connect(mapStateToProps, { fetchLocation, findUser })(App);
