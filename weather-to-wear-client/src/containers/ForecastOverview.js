@@ -6,11 +6,7 @@ import ExtendedForecast from '../components/ExtendedForecast';
 const APIURL_FORECAST = `https://api.wunderground.com/api/${process.env.REACT_APP_WUNDERGROUND_API_KEY}/forecast10day/q`;
 
 class ForecastOverview extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = { extForecasts: this.props.forecasts }
-  }
+  state = { extForecasts: this.props.forecasts };
 
   componentWillReceiveProps(nextProps) {
     this.setState({ extForecasts: nextProps.forecasts })

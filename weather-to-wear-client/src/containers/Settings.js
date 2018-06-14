@@ -4,12 +4,8 @@ import { Redirect, withRouter } from "react-router-dom";
 import { updateUser, deleteUserCity } from '../actions/sessionActions';
 
 class Settings extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = { user: this.props.user }
-  }
-
+  state = { user: this.props.user };
+  
   componentWillReceiveProps(nextProps) {
     this.setState({ user: nextProps.user })
   }

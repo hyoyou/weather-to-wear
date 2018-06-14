@@ -5,15 +5,11 @@ import ForecastDetail from '../components/ForecastDetail';
 const APIURL_FORECAST = `https://api.wunderground.com/api/${process.env.REACT_APP_WUNDERGROUND_API_KEY}/forecast10day/q`;
 
 class SearchBar extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      zipcode: '',
-      forecast: '',
-      error: ''
-    }
-  }
+  state = {
+    zipcode: '',
+    forecast: '',
+    error: ''
+  };
 
   onInputZipCode = event => {
     this.setState({

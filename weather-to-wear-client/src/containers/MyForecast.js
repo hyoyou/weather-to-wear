@@ -6,14 +6,10 @@ import ForecastButtons from '../components/ForecastButtons';
 import ForecastOverview from './ForecastOverview';
 
 class MyForecast extends Component {
-  constructor(props) {
-    super(props)
-
-    this.state = {
-      cities: this.props.cities,
-      extForecasts: []
-    }
-  }
+  state = {
+    cities: this.props.cities,
+    extForecasts: []
+  };
 
   componentWillReceiveProps(nextProps) {
     this.setState({

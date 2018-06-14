@@ -4,15 +4,11 @@ import { Redirect, withRouter } from 'react-router-dom';
 import { signupUser } from '../actions/sessionActions';
 
 class SignUp extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      name: '',
-      email: '',
-      password: ''
-    }
-  }
+  state = {
+    name: '',
+    email: '',
+    password: ''
+  };
 
   onInput = (event) => {
     this.setState({

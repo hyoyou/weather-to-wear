@@ -4,14 +4,10 @@ import { Redirect, withRouter } from 'react-router-dom';
 import { loginUser } from '../actions/sessionActions';
 
 class Login extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      email: '',
-      password: ''
-    }
-  }
+  state = {
+    email: '',
+    password: ''
+  };
 
   onInput = event => {
     this.setState({
