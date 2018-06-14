@@ -1,27 +1,27 @@
 import * as types from './actionTypes';
 
-export const loadUserSuccess = (user) => {
+const loadUserSuccess = (user) => {
   return {
     type: types.LOAD_USER_SUCCESS,
     payload: user
   }
 }
 
-export const updateUserSuccess = (user) => {
+const updateUserSuccess = (user) => {
   return {
     type: types.UPDATE_USER_SUCCESS,
     payload: user
   }
 }
 
-export const deleteUserCitySuccess = (city) => {
+const deleteUserCitySuccess = (city) => {
   return {
     type: types.DELETE_USER_CITY_SUCCESS,
     payload: city
   }
 }
 
-export const userError = (message) => {
+const userError = (message) => {
   return {
     type: types.USER_ERROR,
     payload: message

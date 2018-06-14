@@ -4,24 +4,24 @@ import * as types from '../actions/actionTypes';
 const APIURL_GEO = `https://api.wunderground.com/api/${process.env.REACT_APP_WUNDERGROUND_API_KEY}/geolookup/q/autoip.json`;
 const APIURL_FORECAST = `https://api.wunderground.com/api/${process.env.REACT_APP_WUNDERGROUND_API_KEY}/forecast10day/q`;
 
-export const setZipCode = (zipcode) => {
-  return {
-    type: types.SET_ZIPCODE,
-    payload: zipcode
-  }
-}
-
-export const fetchForecastSuccess = (forecast) => {
+const fetchForecastSuccess = (forecast) => {
   return {
     type: types.FETCH_FORECAST_SUCCESS,
     payload: forecast
   }
 }
 
-export const forecastError = (error) => {
+const forecastError = (error) => {
   return {
     type: types.FORECAST_ERROR,
     payload: error
+  }
+}
+
+export const setZipCode = (zipcode) => {
+  return {
+    type: types.SET_ZIPCODE,
+    payload: zipcode
   }
 }
 
