@@ -1,11 +1,11 @@
-import React, { Component } from 'react';
+import React from 'react';
 
-export default class ForecastButtons extends Component {
-  render() {
-    return this.props.cities.map(city => {
-      return (
-        <button key={city} className="btn btn-outline-dark btn-margin" style={{ marginRight: '10px' }} type="button" onClick={(event) => this.props.onClick(city, event)}>{city}</button>
-      )
-    })
-  }
+const ForecastButtons = ({ cities, onClick }) => {
+  return cities.map(city => {
+    return (
+      <button key={city} className="btn btn-outline-dark btn-margin" style={{ marginRight: '10px' }} type="button" onClick={(event) => onClick(city, event)}>{city}</button>
+    )
+  })
 }
+
+export default ForecastButtons;
