@@ -1,7 +1,7 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 
-const NavBarUser = props => {
+const NavBarUser = () => {
   return (
     <div className="navi">
       <NavLink

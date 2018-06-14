@@ -3,7 +3,7 @@ import React from 'react';
 import ForecastDetail from './ForecastDetail';
 
 const ExtendedForecast = ({ forecasts, zipcode }) => {
-  return(
+  return (
     <div>
       {forecasts && forecasts.map((forecast, index)=>
         <ForecastDetail
