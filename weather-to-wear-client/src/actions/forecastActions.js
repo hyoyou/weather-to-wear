@@ -4,28 +4,28 @@ import * as types from '../actions/actionTypes';
 const APIURL_GEO = `https://api.wunderground.com/api/${process.env.REACT_APP_WUNDERGROUND_API_KEY}/geolookup/q/autoip.json`;
 const APIURL_FORECAST = `https://api.wunderground.com/api/${process.env.REACT_APP_WUNDERGROUND_API_KEY}/forecast10day/q`;
 
-export function setZipCode(zipcode) {
+export const setZipCode = (zipcode) => {
   return {
     type: types.SET_ZIPCODE,
     payload: zipcode
   }
 }
 
-export function fetchForecastSuccess(forecast) {
+export const fetchForecastSuccess = (forecast) => {
   return {
     type: types.FETCH_FORECAST_SUCCESS,
     payload: forecast
   }
 }
 
-export function forecastError(error) {
+export const forecastError = (error) => {
   return {
     type: types.FORECAST_ERROR,
     payload: error
   }
 }
 
-export function fetchLocation() {
+export const fetchLocation = () => {
   return function(dispatch) {
     return fetch(`${APIURL_GEO}`)
     .then(response => response.json())
@@ -39,7 +39,7 @@ export function fetchLocation() {
   }
 }
 
-export function fetchForecast(zipcode) {
+export const fetchForecast = (zipcode) => {
   return function(dispatch) {
     return fetch(`${APIURL_FORECAST}/${zipcode}.json`)
     .then(response => response.json())

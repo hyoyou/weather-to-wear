@@ -1,34 +1,34 @@
 import * as types from './actionTypes';
 
-export function loadUserSuccess(user) {
+export const loadUserSuccess = (user) => {
   return {
     type: types.LOAD_USER_SUCCESS,
     payload: user
   }
 }
 
-export function updateUserSuccess(user) {
+export const updateUserSuccess = (user) => {
   return {
     type: types.UPDATE_USER_SUCCESS,
     payload: user
   }
 }
 
-export function deleteUserCitySuccess(city) {
+export const deleteUserCitySuccess = (city) => {
   return {
     type: types.DELETE_USER_CITY_SUCCESS,
     payload: city
   }
 }
 
-export function userError(message) {
+export const userError = (message) => {
   return {
     type: types.USER_ERROR,
     payload: message
   }
 }
 
-export function loginUser(credentials) {
+export const loginUser = (credentials) => {
   return dispatch => {
     return fetch('http://localhost:3001/api/login', {
       method: 'POST',
@@ -51,7 +51,7 @@ export function loginUser(credentials) {
   }
 }
 
-export function signupUser(userInfo) {
+export const signupUser = (userInfo) => {
   return dispatch => {
     return fetch('http://localhost:3001/api/signup', {
       method: 'POST',
@@ -74,7 +74,7 @@ export function signupUser(userInfo) {
   }
 }
 
-export function findUser(token) {
+export const findUser = (token) => {
   return dispatch => {
     return fetch('http://localhost:3001/api/find', {
       method: 'POST',
@@ -97,7 +97,7 @@ export function findUser(token) {
   }
 }
 
-export function loadUser(userId) {
+export const loadUser = (userId) => {
   return dispatch => {
     return fetch(`http://localhost:3001/api/users/${userId}`, {
       method: 'GET'
@@ -110,7 +110,7 @@ export function loadUser(userId) {
   }
 }
 
-export function updateUser(user) {
+export const updateUser = (user) => {
   return dispatch => {
     return fetch(`http://localhost:3001/api/users/${user.id}`, {
       method: 'PUT',
@@ -132,7 +132,7 @@ export function updateUser(user) {
   }
 }
 
-export function deleteUserCity(userCityId) {
+export const deleteUserCity = (userCityId) => {
   return dispatch => {
     return fetch(`http://localhost:3001/api/user_cities/${userCityId}`, {
       method: 'DELETE',
@@ -152,7 +152,7 @@ export function deleteUserCity(userCityId) {
   }
 }
 
-export function logout() {
+export const logout = () => {
   return dispatch => {
     localStorage.clear();
     dispatch({type: types.LOGOUT});
