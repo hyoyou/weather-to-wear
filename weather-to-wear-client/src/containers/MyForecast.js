@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
-import * as forecastActions from '../actions/forecastActions';
+import { fetchForecast, setZipCode } from '../actions/forecastActions';
 
 import ForecastButtons from '../components/ForecastButtons';
 import ForecastOverview from './ForecastOverview';
@@ -24,8 +23,8 @@ class MyForecast extends Component {
 
   handleClick = (city, event) => {
     event.preventDefault();
-    this.props.actions.fetchForecast(city);
-    this.props.actions.setZipCode(city);
+    this.props.fetchForecast(city);
+    this.props.setZipCode(city);
     this.setState({ extForecasts: [] })
   }
 
@@ -50,10 +49,4 @@ class MyForecast extends Component {
   }
 }
 
-function mapDispatchToProps(dispatch) {
-  return {
-    actions: bindActionCreators(forecastActions, dispatch)
-  }
-}
-
-export default connect(null, mapDispatchToProps)(MyForecast);
+export default connect(null, { fetchForecast, setZipCode })(MyForecast);

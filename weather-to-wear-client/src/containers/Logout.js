@@ -1,14 +1,13 @@
 import React, { Component } from 'react';
-import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { Redirect, withRouter } from 'react-router-dom';
-import * as sessionActions from '../actions/sessionActions';
+import { logout } from '../actions/sessionActions';
 
 class Logout extends Component {
   onLogout = event => {
     event.preventDefault();
 
-    this.props.actions.logout();
+    this.props.logout();
     this.props.history.push('/forecast')
   }
 
@@ -28,16 +27,10 @@ class Logout extends Component {
   }
 }
 
-function mapStateToProps(state) {
+const mapStateToProps = (state) => {
   return {
     user: state.session.user
   }
 }
 
-function mapDispatchToProps(dispatch) {
-  return {
-    actions: bindActionCreators(sessionActions, dispatch)
-  }
-}
-
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Logout));
+export default withRouter(connect(mapStateToProps, { logout })(Logout));

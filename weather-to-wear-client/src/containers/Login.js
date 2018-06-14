@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
-import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { Redirect, withRouter } from 'react-router-dom';
-import * as sessionActions from '../actions/sessionActions';
+import { loginUser } from '../actions/sessionActions';
 
 class Login extends Component {
   constructor(props) {
@@ -23,7 +22,7 @@ class Login extends Component {
   onLogin = event => {
     event.preventDefault();
 
-    this.props.actions.loginUser(this.state)
+    this.props.loginUser(this.state)
     this.props.history.push('/forecast');
   }
 
@@ -64,16 +63,10 @@ class Login extends Component {
   }
 }
 
-function mapStateToProps(state) {
+const mapStateToProps = (state) => {
   return {
     user: state.session.user
   }
 }
 
-function mapDispatchToProps(dispatch) {
-  return {
-    actions: bindActionCreators(sessionActions, dispatch)
-  }
-}
-
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Login));
+export default withRouter(connect(mapStateToProps, { loginUser })(Login));

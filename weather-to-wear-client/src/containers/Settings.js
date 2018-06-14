@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
 import { Redirect, withRouter } from "react-router-dom";
-import * as sessionActions from '../actions/sessionActions';
+import { updateUser, deleteUserCity } from '../actions/sessionActions';
 
 class Settings extends Component {
   constructor(props) {
@@ -42,7 +41,7 @@ class Settings extends Component {
     user.user_cities_attributes.filter((city, cid) => {
       if (id === cid) {
         if (city.id) {
-          this.props.actions.deleteUserCity(city.id);
+          this.props.deleteUserCity(city.id);
         }
       }
     })
@@ -69,7 +68,7 @@ class Settings extends Component {
   onSave = event => {
     event.preventDefault();
 
-    this.props.actions.updateUser(this.state.user);
+    this.props.updateUser(this.state.user);
     this.props.history.push('/forecast');
   }
 
@@ -141,16 +140,10 @@ class Settings extends Component {
   }
 }
 
-function mapStateToProps(state) {
+const mapStateToProps = (state) => {
   return {
     user: state.session.user
   }
 }
 
-function mapDispatchToProps(dispatch) {
-  return {
-    actions: bindActionCreators(sessionActions, dispatch)
-  }
-}
-
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Settings));
+export default withRouter(connect(mapStateToProps, { updateUser, deleteUserCity })(Settings));

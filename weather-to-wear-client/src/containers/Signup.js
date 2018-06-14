@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
-import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { Redirect, withRouter } from 'react-router-dom';
-import * as sessionActions from '../actions/sessionActions';
+import { signupUser } from '../actions/sessionActions';
 
 class SignUp extends Component {
   constructor(props) {
@@ -24,7 +23,7 @@ class SignUp extends Component {
   onSignup = event => {
     event.preventDefault();
 
-    this.props.actions.signupUser(this.state)
+    this.props.signupUser(this.state)
   }
 
   render() {
@@ -74,16 +73,10 @@ class SignUp extends Component {
   }
 }
 
-function mapStateToProps(state) {
+const mapStateToProps = (state) => {
   return {
     user: state.session.user
   }
 }
 
-function mapDispatchToProps(dispatch) {
-  return {
-    actions: bindActionCreators(sessionActions, dispatch)
-  }
-}
-
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(SignUp));
+export default withRouter(connect(mapStateToProps, { signupUser })(SignUp));
