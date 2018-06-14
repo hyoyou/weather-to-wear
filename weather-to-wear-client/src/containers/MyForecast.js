@@ -4,7 +4,7 @@ import { bindActionCreators } from 'redux';
 import * as forecastActions from '../actions/forecastActions';
 
 import ForecastButtons from '../components/ForecastButtons';
-import ForecastOverview from '../components/ForecastOverview';
+import ForecastOverview from './ForecastOverview';
 
 class MyForecast extends Component {
   constructor(props) {

@@ -7,7 +7,7 @@ import './App.css';
 import { fetchLocation } from './actions/forecastActions';
 import { findUser } from './actions/sessionActions';
 
-import ForecastOverview from './components/ForecastOverview';
+import ForecastOverview from './containers/ForecastOverview';
 import Header from './components/Header';
 import Login from './containers/Login';
 import Logout from './containers/Logout';
